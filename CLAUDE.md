@@ -110,8 +110,9 @@ Pelotas usadas AAA (77.427 / 3 órdenes, sin descuento), guantes de cuero (36.95
 8. Varias imágenes vienen del CDN de MercadoLibre (`D_NQ_NP_*`) o son generadas (`Gemini_Generated_Image_*`). Marcar para reemplazo por foto propia.
 
 ### Escritura
-9. Español de Chile, tuteo, directo. Sin relleno de marketing genérico.
-10. El cliente es **golfista**, no paciente. El beneficio se expresa en términos de juego (swing, ronda, hoyo), no clínicos.
+9. **Toda la conversación con el usuario va en español.** Respuestas, resúmenes, preguntas, mensajes de PR y comentarios en GitHub. No cambiar a inglés aunque el código, los logs, las herramientas o la documentación técnica estén en inglés.
+10. Español de Chile, tuteo, directo. Sin relleno de marketing genérico.
+11. El cliente es **golfista**, no paciente. El beneficio se expresa en términos de juego (swing, ronda, hoyo), no clínicos.
 
 ### Antes de tocar Shopify
 11. Lectura libre. **Toda escritura** (precio, estado, inventario, descuento) se confirma con el usuario primero.
