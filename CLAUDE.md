@@ -31,29 +31,45 @@ Su función es que ninguna sesión empiece desde cero.
 
 Medidos con ShopifyQL. **Actualizar en cada auditoría** — ver `/auditoria-funnel`.
 
+> ⚠️ **4 de las 11 órdenes son pruebas del dueño.** Confirmado 2026-08-14.
+> `#1002` (19 jun, 0 CLP, 4 ítems — el 100% de descuento), `#1003` (3.990), `#1004` (1.990), `#1005` (1.990).
+> Todas a nombre de **José María Guzmán Mingo** y todas `UNFULFILLED`.
+> **Las 7 reales son `#1006`–`#1012`**, todas `PAID` + `FULFILLED`.
+> ShopifyQL **no** las separa. Toda cifra de abajo está corregida a mano.
+
 ### Embudo
 
-| Paso | Valor | Tasa | Benchmark | Estado |
+| Paso | Bruto | Real (sin pruebas) | Benchmark | Estado |
 |---|---|---|---|---|
-| Sesiones | 4.576 | — | — | — |
-| Agregó al carro | 49 | **1,07%** | 6–10% | 🔴 crítico |
-| Llegó a checkout | 38 | 77,6% del ATC | 60–80% | 🟢 sano |
-| Completó compra | 11 | **28,9%** del checkout | 45–65% | 🔴 malo |
-| **Conversión total** | **11** | **0,24%** | 1,4–2% | 🔴 ~6–8× bajo |
+| Sesiones | 4.576 | ~4.572 | — | — |
+| Agregó al carro | 49 | ~45 · **0,98%** | 6–10% | 🔴 crítico |
+| Llegó a checkout | 38 | ~34 · 75,6% del ATC | 60–80% | 🟢 sano |
+| Completó compra | 11 | **7** · ~20,6% del checkout | 45–65% | 🔴 malo |
+| **Conversión total** | 0,24% | **0,15%** | 1,4–2% | 🔴 ~10× bajo |
 
 **Lectura:** el cuello de botella #1 **no es el checkout, es la ficha de producto.**
-98,9% de las visitas no agregan nada al carro. Quien sí agrega, llega a checkout sin problema.
+99% de las visitas no agregan nada al carro. Quien sí agrega, llega a checkout sin problema.
+El cierre de checkout (~20,6%) es el problema #2 y es peor de lo que parecía antes de descontar las pruebas.
 
 ### Dinero
 
-| Métrica | CLP |
-|---|---|
-| Gross sales | 336.001 |
-| Descuentos | **−128.209 (38,2% del gross)** |
-| Net sales | 177.802 |
-| Total sales | 231.278 |
-| AOV | 18.890 |
-| Órdenes | 11 |
+| Métrica | Bruto (11 órdenes) | Real (7 órdenes) |
+|---|---|---|
+| Gross sales | 336.001 | ~191.071 |
+| Descuentos | −128.209 (38,2%) | **~−21.239 (~11%)** 🟢 normal |
+| Net sales | 177.802 | ~169.832 |
+| Total sales | 231.278 | **227.298** |
+| **AOV** | 18.890 | **32.471** 🟢 |
+
+**Dos correcciones importantes:**
+1. **La "fuga de descuentos" del 38,2% no existe.** Era la orden de prueba `#1002`. El descuento real (~11%) está en rango normal.
+2. **El AOV real es 32.471 CLP, no 18.890.** Las pruebas de 0–3.990 CLP hundían el promedio. Esto **cambia la economía unitaria**: a 32.471 de ticket el tráfico pagado sí puede ser viable, cosa que a 18.890 era casi imposible. Rehacer el cálculo con este número.
+
+### Higiene de datos — pendiente
+
+Las órdenes de prueba quedan en la analítica de Shopify **para siempre**.
+Para futuras pruebas usar **Bogus Gateway** (Configuración → Pagos → modo de prueba):
+esas órdenes sí quedan excluidas de los reportes. Una orden con 100% de descuento **no** se excluye.
 
 ### Tráfico por fuente
 

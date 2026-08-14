@@ -5,7 +5,36 @@ description: Autopsia completa del embudo de conversión y márgenes de Albatro 
 
 # Auditoría de embudo — Albatro Golf
 
-Diagnóstico en 6 pasos. **No saltes pasos**: el orden importa porque cada uno acota al siguiente.
+Diagnóstico en 7 pasos. **No saltes pasos**: el orden importa porque cada uno acota al siguiente.
+
+## Paso 0 — Descontar las órdenes de prueba ⚠️
+
+**Obligatorio. Sin esto todo el resto del análisis está mal.**
+
+```
+mcp__Shopify__list-orders  (first: 50)
+```
+
+Marca como prueba toda orden que cumpla cualquiera de estas:
+
+- Cliente = **José María Guzmán Mingo** (el dueño)
+- `totalPrice` = 0, o montos simbólicos (1.990 / 3.990)
+- `fulfillmentStatus` = `UNFULFILLED` con fecha vieja
+
+> Línea base 2026-08-14: de 11 órdenes, **4 son pruebas** — `#1002` (0 CLP, 4 ítems), `#1003`, `#1004`, `#1005`. Las reales son `#1006`–`#1012`.
+
+**ShopifyQL no las separa.** Cualquier `FROM sales` las incluye. Por eso:
+
+1. Cuenta las órdenes de prueba y su `totalPrice`.
+2. Réstalas a mano de cada cifra de los pasos siguientes.
+3. **Reporta siempre las dos cifras** — bruta y corregida — para que se vea el ajuste.
+
+Distorsiones que provocan si no las descuentas:
+- Inflan las órdenes y la conversión (parecen ventas)
+- Hunden el AOV (tickets de 0–3.990)
+- Inventan una fuga de descuentos que no existe (una orden al 100% de descuento aparece como `net_sales = 0`)
+
+**Para futuras pruebas:** usar **Bogus Gateway** (Configuración → Pagos → modo de prueba). Esas órdenes sí quedan fuera de los reportes. Una orden con 100% de descuento **no**.
 
 ## Paso 1 — Embudo
 
@@ -59,9 +88,11 @@ FROM sales SHOW gross_sales, net_sales, orders GROUP BY product_title ORDER BY g
 
 **Busca filas con `gross_sales > 0` y `net_sales = 0`.** Significa 100% descontado o 100% reembolsado.
 
-Por cada una, pregunta al usuario: ¿regalo intencional, producto de prueba, o código de descuento fuera de control? No asumas.
+Antes de alarmarte, **crúzalo contra el Paso 0**: lo más probable es que sea una orden de prueba, no un problema de negocio.
 
-> Línea base: 4 productos, 136.960 CLP en gross, **0 en neto**.
+Si no calza con ninguna prueba, entonces sí pregunta al usuario: ¿regalo intencional o código de descuento fuera de control? No asumas.
+
+> Línea base 2026-08-14: los 4 productos con 136.960 CLP en neto cero eran **la orden de prueba `#1002`**, ya confirmado. Descontada, el descuento real cae de 38,2% a ~11% — rango normal.
 
 ## Paso 5 — Concentración de ingreso
 
