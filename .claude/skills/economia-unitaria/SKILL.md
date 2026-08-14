@@ -26,21 +26,30 @@ Precio de lista (IVA incl.)          P
 = Margen neto por orden              M − A
 ```
 
-### Ejemplo trabajado — Rodillera de Compresión Ortopédica
+### Parámetros verificados (7 órdenes reales, corte 2026-08-14)
 
-| Concepto | CLP |
-|---|---|
-| Precio lista (IVA incl.) | 9.990 |
-| Neto de IVA (`9.990 / 1,19`) | 8.395 |
-| COGS Dropi *(⚠️ pedir dato real)* | ~4.000 |
-| Comisión pasarela (3,5% de 9.990) | 350 |
-| Envío subsidiado *(línea base: 1.735/orden)* | 1.735 |
-| **Margen de contribución** | **≈ 2.310** |
-| Margen sobre precio lista | **23%** |
+| Parámetro | Valor real | Nota |
+|---|---|---|
+| AOV (total pagado) | **32.471** | No 18.890 — ese incluía pruebas |
+| Mercadería neta de IVA por orden | **~24.460** | Después de descuento |
+| Envío | **Lo paga el cliente: 3.100** | No subsidiado. Solo #1011 cobró 4.950. |
+| Descuento real | **11,1%** | Sobre mercadería |
+| IVA | **Incluido en el precio** | Verificado en `#1007`–`#1012` |
+| Comisión pasarela | ~3,5% del cobro | ~1.136/orden |
 
-**Lectura:** con ~2.310 CLP por unidad, el CAC máximo pagable es 2.310 — y eso deja **cero** utilidad. Para 15% de utilidad real el CAC no puede pasar de ~800 CLP (~USD 0,85). **En Meta, a ese ticket, es prácticamente inalcanzable.**
+> ⚠️ Solo `#1006` cobró IVA **encima** del precio (21.990 + 4.178). Corregido desde `#1007`.
+> Si vuelve a aparecer una orden así, es una regresión en Configuración → Impuestos.
 
-→ Conclusión de negocio: los productos de 9.990 **no soportan tráfico pagado**. Solo funcionan como orgánico, como bundle, o como cross-sell dentro de una orden ya adquirida.
+### ⚠️ Calcula sobre lo que vende, no sobre el catálogo
+
+**Las 7 órdenes reales son 100% golf core de marca propia. El catálogo Dropi de
+recuperación vendió CERO unidades a clientes reales en 90 días.**
+
+Mix 12 Pelotas AAA (4 u.) · Guante de cuero (2 u.) · Pack 2 guantes · MIX Bajo Par ·
+Toalla + llavero · Hebilla · Lápiz.
+
+No pierdas tiempo calculando márgenes de rodilleras y kinesio tape. **Empieza por
+pelotas y guantes: son el 88% del ingreso.**
 
 ## Cómo usarla
 
@@ -83,6 +92,6 @@ Redondea **hacia arriba** al `.990` más cercano (convención chilena).
 1. **Ningún cambio de precio sin este cálculo.** Sin excepción.
 2. **Ningún descuento >15% sin recalcular.** Con 38,2% de fuga de descuento en la línea base, esto ya pasó una vez.
 3. Un descuento del 100% (`net_sales = 0`) es un regalo. Debe ser una decisión consciente y registrada, no un accidente de configuración.
-4. Envío: hoy se subsidia ~1.735 CLP por orden. Ese número entra **siempre** en la cascada.
+4. Envío: **lo paga el cliente (3.100)**. Entra en la cascada solo por la diferencia entre lo cobrado y el costo real de despacho. Si el courier cobra más de 3.100, esa diferencia sale del margen.
 5. Si el margen sale negativo, **dilo en la primera línea**. No lo entierres bajo la tabla.
 6. Al comparar productos, ordena por **margen absoluto en CLP**, no por porcentaje. Un 60% sobre 5.000 pierde contra un 30% sobre 35.000.

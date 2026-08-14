@@ -137,7 +137,9 @@ Pelotas usadas AAA (77.427 / 3 órdenes, sin descuento), guantes de cuero (36.95
 
 ## 5. Pendientes conocidos
 
-- [ ] **Verificar config de impuestos.** `taxes` = 30.112 sobre `net_sales` = 162.466 (≈18,5%). Si los precios están cargados como *tax-exclusive*, el cliente ve 9.990 y en checkout le cobran ~11.888 → causa clásica de abandono en Chile y explicaría el 28,9% de completitud. Revisar en Shopify → Configuración → Impuestos.
+- [x] ~~**Verificar config de impuestos.**~~ **RESUELTO 2026-08-14.** Verificado orden por orden: `#1007`–`#1012` cobran **IVA incluido** (correcto para Chile). Solo `#1006` sumó el IVA encima (21.990 + 4.178 = 29.268 pagados). Se corrigió entre el 27 y 28 de julio. Si reaparece, es regresión.
+- [ ] **El catálogo Dropi vendió CERO unidades a clientes reales en 90 días.** Las 7 órdenes reales son 100% golf core de marca propia (pelotas, guantes, toalla, hebilla, lápiz). Los ~20 productos de recuperación/salud ocupan la mayoría de las fichas y no aportan nada. Decidir: despublicar, o rehacer fichas y probar de verdad.
+- [ ] **Dos descuentos sobre el límite del 15%:** `#1011` (10.000 sobre 34.990 = 28,6%) y `#1012` (8.500 sobre 35.990 = 23,6%). Justo en los dos tickets más altos.
 - [ ] **Boleta electrónica SII.** En Chile es obligatoria por Ley 21.210 desde 2021, también para e-commerce. Shopify **no** tiene integración nativa con el SII — requiere Lioren, Bsale, Nubox u OpenFactura.
 - [ ] **Medios de pago locales.** Confirmar Webpay/Transbank y Mercado Pago activos. Su ausencia es otra causa mayor de abandono en checkout.
 - [ ] **Auditar los 4 productos con `net_sales = 0`.**
