@@ -40,6 +40,61 @@ Precio de lista (IVA incl.)          P
 > ⚠️ Solo `#1006` cobró IVA **encima** del precio (21.990 + 4.178). Corregido desde `#1007`.
 > Si vuelve a aparecer una orden así, es una regresión en Configuración → Impuestos.
 
+### COGS confirmados por el dueño (2026-08-14)
+
+| Producto | COGS | Origen |
+|---|---|---|
+| **Pelota usada AAA** | **800 c/u** | Se compran por docena → docena = 9.600 |
+| **Guante de cuero** | **9.600** | Ya incluye packing |
+| Pack 2 guantes | 19.200 | 2 × 9.600 |
+| MIX Bajo Par | ⚠️ **pendiente** | Preguntar contenido del pack |
+| Toalla, lápiz, hebilla | ⚠️ pendiente | |
+
+### Márgenes calculados
+
+| | Pelotas 12 AAA | Guante cuero | Pack 2 guantes |
+|---|---|---|---|
+| Precio lista | 21.990 | 21.990 | 35.990 |
+| Neto de IVA (`/1,19`) | 18.479 | 18.479 | 30.244 |
+| − COGS | −9.600 | −9.600 | −19.200 |
+| − Comisión 3,5% | −770 | −770 | −1.260 |
+| **= Margen** | **8.109** | **8.109** | **9.784** |
+| **% sobre lista** | **36,9%** 🟢 | **36,9%** 🟢 | **27,2%** 🟡 |
+
+**Blended real** (5 de 7 órdenes calculables): **10.384 CLP/orden · 29,5%**
+
+### CAC pagable
+
+| | CLP | USD aprox. |
+|---|---|---|
+| Breakeven (utilidad cero) | 10.384 | ~11 |
+| **Objetivo — 20% de utilidad** | **~5.000** | **~5,3** |
+
+**Veredicto: el tráfico pagado es viable, pero exigente.** Un CPA de compra de USD 5,3
+en Chile es alcanzable con CPMs locales, pero **solo con la ficha arreglada**. Con
+add-to-cart en 0,98% el CPA real sería catastrófico. Ficha primero, tráfico después.
+
+### Precio mínimo viable — pelotas
+
+Para sostener un CAC de 5.000 con 20% de utilidad:
+
+```
+P_min = 22.912  →  redondeo .990  →  22.990
+```
+
+A los 21.990 actuales, con CAC de 5.000, la utilidad queda en **16,8%**.
+Subir a 22.990 (+4,5%) devuelve el margen al 20% sin tocar nada más.
+
+### ⚠️ Lo que cuesta un descuento — caso real `#1012`
+
+| Pack 2 guantes | Sin descuento | Con los 8.500 aplicados |
+|---|---|---|
+| Cobrado | 35.990 | 27.490 |
+| Margen | **9.784** | **2.939** |
+| % | 27,2% | **10,7%** |
+
+**Ese descuento se comió el 70% del margen.** Por eso el límite del 15% no es decorativo.
+
 ### ⚠️ Calcula sobre lo que vende, no sobre el catálogo
 
 **Las 7 órdenes reales son 100% golf core de marca propia. El catálogo Dropi de

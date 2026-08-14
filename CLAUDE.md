@@ -93,6 +93,19 @@ esas órdenes sí quedan excluidas de los reportes. Una orden con 100% de descue
 
 Esto explica casi todo el gap gross→net. **Antes de cualquier análisis de rentabilidad, confirmar si fueron regalos/tests intencionales o códigos de descuento fuera de control.**
 
+### Economía unitaria (COGS confirmados 2026-08-14)
+
+| | Precio | COGS | Margen | % |
+|---|---|---|---|---|
+| Mix 12 Pelotas AAA | 21.990 | 9.600 (12 × 800) | 8.109 | **36,9%** 🟢 |
+| Guante de cuero | 21.990 | 9.600 (con packing) | 8.109 | **36,9%** 🟢 |
+| Pack 2 guantes | 35.990 | 19.200 | 9.784 | 27,2% 🟡 |
+
+**Blended: 10.384 CLP/orden · 29,5%.**
+**CAC breakeven 10.384 · CAC objetivo (20% utilidad) ~5.000 CLP (~USD 5,3).**
+
+→ El tráfico pagado **es viable**, pero solo con la ficha arreglada. Ver `/economia-unitaria`.
+
 ### Lo que sí genera ingreso
 
 Pelotas usadas AAA (77.427 / 3 órdenes, sin descuento), guantes de cuero (36.958 / 2), pack 2 guantes, MIX Bajo Par, toalla, hebilla.
