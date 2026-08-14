@@ -114,6 +114,51 @@ Pelotas usadas AAA (77.427 / 3 órdenes, sin descuento), guantes de cuero (36.95
 
 ---
 
+## 2.b Mercado y competencia (investigado 2026-08-14)
+
+### Tamaño
+
+| Dato | Valor | Variación |
+|---|---|---|
+| Golfistas federados en Chile | **17.000** | +15% desde 2018 (6.700 nuevos) |
+| Rondas oficiales 2025 | **520.000** | +35% |
+| Rondas por jugador/año | 32 | +17% |
+| Torneos oficiales | 100+ · 200 días/año | +25% |
+
+Fuente: Federación Chilena de Golf (`chilegolf.cl`).
+Mercado chico pero de **consumo recurrente** — el crecimiento en rondas importa más que el de jugadores.
+
+### Competencia
+
+| Competidor | Qué es | Polera |
+|---|---|---|
+| `golfchile.cl` | Rep. oficial Titleist / FootJoy / Vokey / Scotty Cameron | 50.990–72.990 |
+| `lackingtongolf.cl` | Tienda chilena — palos, ropa, accesorios | — |
+| Falabella · Ripley | Categoría golf en retail masivo | — |
+| MercadoLibre Chile | Head covers genéricos importados | — |
+
+> **Hueco de mercado: no existe una marca chilena de golf.** Todo se surte de etiqueta importada
+> a precio de importación. Ahí es donde Albatro ya está ganando con guantes y pelotas.
+
+### Línea nueva en desarrollo — precios sugeridos
+
+⚠️ COGS **estimados**. Reemplazar por los reales y rehacer con `/economia-unitaria`.
+
+| Producto | Precio | COGS est. | Margen | % |
+|---|---|---|---|---|
+| Polera técnica | 39.990 | 12.000 | 20.205 | **50,5%** |
+| Head cover maderas | 16.990 | 4.500 | 9.182 | **54,0%** |
+| Toalla pro | 14.990 | 3.500 | 8.572 | **57,2%** |
+
+Los tres superan el 36,9% de pelotas y guantes.
+Complementos sugeridos sin talla: marcadores de bola (4.990), tees (3.990), jockey (24.990).
+
+### Palanca de carrito pendiente
+
+**Envío gratis sobre 39.990** (+23% sobre el AOV de 32.471). Cualquier producto sobre
+8.400 cubre los 3.100 de despacho al margen del 36,9% — el umbral se financia solo.
+Requiere primero tener catálogo combinable.
+
 ## 3. Stack conectado
 
 **MCP activos en chat:** Shopify · MCP META (Meta Ads) · Motion Creative Analytics · Canva · Adobe for Creativity · Higgsfield (imagen/video/voz) · Lovable · Google Drive
