@@ -201,17 +201,29 @@ Requiere primero tener catálogo combinable.
 - [ ] **Boleta electrónica SII.** En Chile es obligatoria por Ley 21.210 desde 2021, también para e-commerce. Shopify **no** tiene integración nativa con el SII — requiere Lioren, Bsale, Nubox u OpenFactura.
 - [ ] **Medios de pago locales.** Confirmar Webpay/Transbank y Mercado Pago activos. Su ausencia es otra causa mayor de abandono en checkout.
 - [ ] **Auditar los 4 productos con `net_sales = 0`.**
-- [ ] 🔴 **La bio de Instagram manda a una página muerta.** Medido 2026-08-17:
-  **874 de 1.313 sesiones de Instagram (67%) aterrizan en `/pages/lista-espera`**, que
-  anuncia «Albatro abre el 28 de julio» — hace 20 días. No tiene ni un link a producto,
-  solo un formulario de email. Última edición: 14 de julio.
-  Instagram entrega 1.313 sesiones en 90 días, 5 agregados al carro y **0 compras**.
-  No es el contenido: es el destino del link.
-- [ ] 🔴 **74 correos de lista de espera sin tocar.** Los 74 clientes de la tienda están
-  etiquetados `lista-espera` y **todos con `SUBSCRIBED`**. Se les prometió «Guía del
-  Golfista gratis» y «beneficio de fundador el día 1: tu descuento antes que nadie»
-  para el 28 de julio. Nadie les escribió. Son 10× la base de clientes reales (7).
-  El tráfico de email en 90 días es **1 sesión**.
+- [x] ~~**La bio de Instagram manda a `/pages/lista-espera`.**~~ **RESUELTO por el dueño**
+  antes del 2026-08-17. En los últimos 14 días esa página recibe **0 sesiones** de
+  Instagram; el tráfico entra al home (182) y a fichas. El dato de 874 sesiones era el
+  agregado de 90 días y arrastraba el problema viejo.
+  ⚠️ La página **sigue publicada** y sigue diciendo «Albatro abre el 28 de julio».
+  Conviene despublicarla o reescribirla.
+- [ ] 🔴 **74 correos sin tocar.** Los 74 clientes de la tienda están etiquetados
+  `lista-espera`, **todos `SUBSCRIBED`**, y prácticamente ninguno compró.
+  Entraron por **dos** formularios, ambos `form_type=customer` de Shopify:
+  1. `/pages/lista-espera` → tag `lista-espera`
+  2. El popup **«El Putt Albatro»** (`snippets/albatro-popup-golf.liquid`), un minijuego
+     de putt a los 15 s de navegación → tags `popup-golf,lista-espera`
+  **Shopify no notifica al comerciante los registros de newsletter** — solo órdenes.
+  Por eso nunca llegó un aviso: quedaron en Clientes, sin que nada los tocara.
+  Sin plataforma de email conectada, nadie les escribió nunca.
+- [ ] 🔴 **`FUNDADOR15` lleva 2 meses regalando 15% y se usó UNA vez.**
+  El popup entrega el código a **todo el que juega, emboque o no** («Igual te ganaste el
+  15% por intentarlo»). El código existe y está `ACTIVE` desde el 2026-06-11,
+  **sin fecha de término y sin límite de usos** (`appliesOncePerCustomer: true`).
+  `asyncUsageCount = 1`.
+  Sobre el guante (21.990, margen 8.109 · 36,9%), un 15% se come **~41% del margen**:
+  deja ~4.810 · 21,9%. Está en el límite exacto de la regla de descuentos.
+  Decidir: ponerle vencimiento, acotarlo, o apagarlo.
 - [ ] **Cero recuperación de carro abandonado.** 38 llegaron a checkout, 11 compraron. 27 abandonos sin ningún email.
 - [ ] `index.html` en la raíz del repo es un stub sin usar (`<!-- Aquí va el código de Shopify -->`). Decidir: borrarlo o convertirlo en landing real.
 
