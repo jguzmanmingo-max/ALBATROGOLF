@@ -207,26 +207,54 @@ Requiere primero tener catálogo combinable.
   agregado de 90 días y arrastraba el problema viejo.
   ⚠️ La página **sigue publicada** y sigue diciendo «Albatro abre el 28 de julio».
   Conviene despublicarla o reescribirla.
-- [ ] 🔴 **74 correos sin tocar.** Los 74 clientes de la tienda están etiquetados
-  `lista-espera`, **todos `SUBSCRIBED`**, y prácticamente ninguno compró.
-  Entraron por **dos** formularios, ambos `form_type=customer` de Shopify:
-  1. `/pages/lista-espera` → tag `lista-espera`
+- [x] ~~**74 correos sin tocar.**~~ **EN CURSO 2026-08-17.** Los 74 clientes de la
+  tienda están etiquetados `lista-espera`, **todos `SUBSCRIBED`**, y prácticamente
+  ninguno compró. Entraron por **dos** formularios, ambos `form_type=customer` de
+  Shopify:
+  1. `/pages/lista-espera` → tag `lista-espera` (21 personas)
   2. El popup **«El Putt Albatro»** (`snippets/albatro-popup-golf.liquid`), un minijuego
-     de putt a los 15 s de navegación → tags `popup-golf,lista-espera`
+     de putt a los 15 s de navegación → tags `popup-golf,lista-espera` (44 personas)
   **Shopify no notifica al comerciante los registros de newsletter** — solo órdenes.
   Por eso nunca llegó un aviso: quedaron en Clientes, sin que nada los tocara.
-  Sin plataforma de email conectada, nadie les escribió nunca.
-- [ ] 🔴 **`FUNDADOR15` se usó UNA vez, y no es porque esté roto.**
-  Config verificada: todos los clientes, sin mínimo, toda la tienda, sin vencimiento,
-  `ACTIVE` desde el 2026-06-11. La orden `#1009` lo usó de punta a punta, así que el
-  mecanismo funciona. Las dos causas reales:
-  1. **El código se muestra una sola vez en pantalla y nunca se envía por correo.**
+
+  **Segmentado a 65** (se excluyen el dueño, `hola@albatrogolf.cl`, y 3 que ya
+  compraron: `eliasjmc`, `salvadorcartest`, `ftorresh61`). Lista completa en
+  `albatro-leads-para-escribir.csv` (fuera del repo, entregada al dueño), con
+  cohortes por fecha: 45 desde antes del 28 jul (espera larga, 20-48 días), 20
+  después (2-19 días).
+
+  **Correo redactado** con oferta `FUNDADOR15` + envío gratis (ver más abajo) —
+  pendiente que el dueño lo envíe vía Shopify Email o su herramienta, porque
+  **no hay plataforma de email conectada en el chat** (Klaviyo sin conectar, Gmail
+  apagado). No se puede marcar del todo resuelto hasta que se mande y confirme.
+
+  **Alarma diaria creada** (`trig_01KurGAxQu62Faesvf6yk8jJ`, 13:07 UTC = 9:07 Chile):
+  revisa clientes nuevos de las últimas 24h y avisa por push solo si entró alguien.
+  Esto es lo que evita que se repita el problema.
+
+- [x] ~~**`FUNDADOR15` se usó UNA vez.**~~ **RESUELTO 2026-08-17.** No estaba roto —
+  config verificada: todos los clientes, sin mínimo, toda la tienda. La orden `#1009`
+  lo usó de punta a punta. Las dos causas reales:
+  1. **El código se mostraba una sola vez en pantalla y nunca se enviaba por correo.**
      El popup lo enseña tras dejar el email y marca `state.done` en `localStorage`;
-     si no lo copian en ese momento, no hay forma de recuperarlo.
-  2. **Lo canibalizan códigos hechos a mano que dan más.** `salvadorcartest@gmail.com`
-     tiene tags `popup-golf` — o sea ya tenía su 15% — y compró en `#1011` con
+     si no lo copiaban en ese momento, no había forma de recuperarlo. Por eso se
+     redactó el correo de arriba — ahora sí les llega por escrito.
+  2. **Lo canibalizaban códigos hechos a mano que daban más.** `salvadorcartest@gmail.com`
+     tiene tag `popup-golf` — o sea ya tenía su 15% — y compró en `#1011` con
      `CODIGOSALVADOR`: **10.000 sobre 29.940 = 25%**. `#1012` usó `bernardo2`:
-     8.500 sobre 30.590 = 21,7%. El 15% automático es la peor oferta de la mesa.
+     8.500 sobre 30.590 = 21,7%. El 15% automático era la peor oferta de la mesa
+     (ya resuelto arriba, en «Descuentos sin control»).
+
+  **Se le agregó vencimiento y envío gratis** para la campaña a los 65: `FUNDADOR15`
+  ahora vence el **24 de agosto 23:59** (antes no tenía fecha de término — cero
+  urgencia) y quedó `combinesWith.shippingDiscounts: true`. Shopify no permite que
+  un código combine "% off" + envío gratis en un solo objeto, así que se creó un
+  **segundo descuento automático** — «Envío gratis — regalo lista de espera (7 días,
+  sin mínimo)», `gid://shopify/DiscountAutomaticNode/1542253445373` — que expira el
+  mismo día. ⚠️ Ese envío gratis es **automático y sin mínimo para cualquier visitante**
+  durante esos 7 días, no solo para los 65 — efecto secundario necesario del modelo de
+  descuentos de Shopify, evaluado y aceptado por el dueño. Se autoextingue solo; después
+  del 24 de agosto la tienda vuelve al umbral de $50.000 sin que haga falta tocar nada.
 - [x] ~~**Descuentos sin control.**~~ **RESUELTO 2026-08-17.** Había **9 códigos activos**
   a la vez, ninguno con fecha de término. Se apagaron 8 y quedó solo `FUNDADOR15`:
 
