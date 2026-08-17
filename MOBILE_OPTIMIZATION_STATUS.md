@@ -168,9 +168,38 @@ Se reaprovechó el slot de XS como `M-L`, conservando sus 2 unidades. **XL se el
 con él sus 2 unidades: el total bajó de 9 a 7.** Como el stock de un bundle depende de
 lo que puedas armar y no de la talla, conviene que fijes el número real.
 
-> ⚠️ **El bundle solo sirve para diestros.** El guante suelto tiene `Mano`
-> (Izquierda · Derecha), pero el MIX no — asume mano izquierda. Un zurdo no puede
-> comprarlo. Si quieres cubrirlo, hay que agregarle una segunda opción `Mano`.
+**Después se le agregó la opción `Mano`**, porque el bundle solo servía para diestros.
+Ahora son 8 variantes: 4 tallas × 2 manos, todas en `CONTINUE`.
+
+La opción se agregó con `productOptionsCreate` pasando solo el valor `Izquierda`, así
+las 4 variantes existentes lo heredaron conservando sus IDs, inventario y ubicación —
+sin borrar nada. Las 4 de mano derecha se crearon después en 0, por encargo.
+
+| Variante | SKU | Stock |
+|---|---|---|
+| S / Izquierda (diestro) | `MIX-BAJOPAR-S-IZQ` | 2 |
+| M / Izquierda (diestro) | `MIX-BAJOPAR-M-IZQ` | 1 |
+| M-L / Izquierda (diestro) | `MIX-BAJOPAR-ML-IZQ` | 2 |
+| L / Izquierda (diestro) | `MIX-BAJOPAR-L-IZQ` | 2 |
+| S · M · M-L · L / Derecha (zurdo) | `MIX-BAJOPAR-*-DER` | 0 (por encargo) |
+
+### 1.10 «Izquierda (diestro)» — una aclaración que se había perdido
+
+Al normalizar el guante en §1.1 se perdió información: la variante original decía
+`M. Mano DERECHA(para zurdos)`, y al acortarla quedó solo `Derecha`.
+
+**En golf el diestro usa el guante en la mano izquierda.** Un cliente que ve
+«Mano: Izquierda / Derecha» no sabe si se refiere a su mano de juego o a la mano donde
+va el guante. Esa duda cae justo en el selector, que es el peor lugar posible.
+
+Los valores quedaron así en el guante y en el MIX:
+
+| Antes | Ahora |
+|---|---|
+| `Izquierda` | `Izquierda (diestro)` |
+| `Derecha` | `Derecha (zurdo)` |
+
+Ahora el cliente reconoce su caso sin tener que saber nada de convenciones de golf.
 
 ### 1.9 Handles corregidos — 13, todos con redirección
 
@@ -293,10 +322,13 @@ quedaron resueltos acá.
 - [x] ~~**Foto de la Hebilla en la toalla chica.**~~ Revisado con el dueño: se queda.
 - [x] ~~**`MIX Bajo Par` con talla `XS`.**~~ **RESUELTO:** ahora ofrece las tallas del
       guante (`S · M · M-L · L`).
+- [x] ~~**El MIX Bajo Par solo sirve para diestros.**~~ **RESUELTO:** tiene opción
+      `Mano`, 8 variantes. Ver §1.8.
 - [ ] **Stock real del MIX Bajo Par.** Quedó en 7 unidades después de sacar XL, pero el
       stock de un bundle depende de cuántos puedas armar. Fija el número real.
-- [ ] **El MIX Bajo Par solo sirve para diestros.** No tiene opción `Mano`. Si quieres
-      vender a zurdos, hay que agregarla.
+- [ ] **El Pack de 2 Guantes tiene el mismo problema que tenía el MIX:** solo `Talla`
+      (S · M · M-L), sin opción `Mano`. Un zurdo no puede comprarlo. El arreglo es
+      idéntico al de §1.8 — no lo hice porque el pedido fue puntual para el MIX.
 - [ ] **Bloque de inventario para urgencia.** Horizon trae `product-inventory`, que
       muestra "Quedan 4". Con el guante L en 4 unidades y el pack M en 10, es urgencia
       real y gratis. Se agrega arrastrando el bloque en el editor de temas, entre el
