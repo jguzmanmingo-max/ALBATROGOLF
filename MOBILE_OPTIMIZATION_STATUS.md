@@ -53,6 +53,12 @@ M = 10, S = 0, M-L = 0.
 decisión del guante: venta por encargo. Esto explica el stock en −1 que aparecía en el
 informe: no era un bug, era una venta por encargo funcionando como corresponde.
 
+**Después se le agregó la opción `Mano`**, igual que al MIX: el pack tampoco servía para
+zurdos. Ahora son 6 variantes (3 tallas × 2 manos), todas en `CONTINUE`, con SKUs
+`PACK2-GUA-{S,M,ML}-{IZQ,DER}`. Las 10 unidades siguen en `M / Izquierda (diestro)`.
+Se usó el mismo camino no destructivo: `productOptionsCreate` con un solo valor para que
+las variantes existentes lo heredaran, y las de mano derecha creadas después en 0.
+
 ### 1.3 Poleras — consolidadas
 
 Había **3 fichas para 1 producto**. En mobile eso obliga a salir y comparar en pestañas.
@@ -326,9 +332,11 @@ quedaron resueltos acá.
       `Mano`, 8 variantes. Ver §1.8.
 - [ ] **Stock real del MIX Bajo Par.** Quedó en 7 unidades después de sacar XL, pero el
       stock de un bundle depende de cuántos puedas armar. Fija el número real.
-- [ ] **El Pack de 2 Guantes tiene el mismo problema que tenía el MIX:** solo `Talla`
-      (S · M · M-L), sin opción `Mano`. Un zurdo no puede comprarlo. El arreglo es
-      idéntico al de §1.8 — no lo hice porque el pedido fue puntual para el MIX.
+- [x] ~~**El Pack de 2 Guantes sin opción `Mano`.**~~ **RESUELTO:** 6 variantes,
+      3 tallas × 2 manos. Ver §1.2.
+
+**Toda la línea de guantes queda cubierta para zurdos:** guante suelto, pack de 2 y
+MIX Bajo Par.
 - [ ] **Bloque de inventario para urgencia.** Horizon trae `product-inventory`, que
       muestra "Quedan 4". Con el guante L en 4 unidades y el pack M en 10, es urgencia
       real y gratis. Se agrega arrastrando el bloque en el editor de temas, entre el
