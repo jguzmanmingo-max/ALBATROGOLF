@@ -227,15 +227,26 @@ Requiere primero tener catálogo combinable.
      tiene tags `popup-golf` — o sea ya tenía su 15% — y compró en `#1011` con
      `CODIGOSALVADOR`: **10.000 sobre 29.940 = 25%**. `#1012` usó `bernardo2`:
      8.500 sobre 30.590 = 21,7%. El 15% automático es la peor oferta de la mesa.
-- [ ] 🔴 **Descuentos sin control: 7 códigos activos a la vez.**
-  | Código | Título | Usos |
-  |---|---|---|
-  | `ALBATRO10` | «Bienvenida **15%** · mín $50.000» — el nombre dice 15, el código dice 10 | 0 |
-  | `ALBATRO15` | «15% primera compra (**legacy · no usar**)» — activo pese al propio título | 0 |
-  | `FUNDADOR15` | Fundador 15% toda la tienda | 1 |
-  | `FUNDADOR20` | «Acceso Fundador — Guante» · **20%, sobre el límite de la regla** | 0 |
-  | `CODIGOSALVADOR` · `ELIAS20` · `bernardo2` | códigos personales, activos sin vencimiento | 1 · 0 · 1 |
-  Ninguno tiene fecha de término. Hay que decidir cuáles sobreviven y ponerles tope.
+- [x] ~~**Descuentos sin control.**~~ **RESUELTO 2026-08-17.** Había **9 códigos activos**
+  a la vez, ninguno con fecha de término. Se apagaron 8 y quedó solo `FUNDADOR15`:
+
+  | Código apagado | Por qué |
+  |---|---|
+  | `ENVIO0` | **envío gratis, «test interno», vivo sin vencimiento** — regalaba los 3.100 de despacho a quien lo adivinara |
+  | `ALBATRO15` | su propio título decía «legacy · **no usar**» |
+  | `ALBATRO10` | titulado «Bienvenida **15%**» pero el código da 10 — reclamo asegurado |
+  | `FUNDADOR20` | 20%, por sobre el límite de la regla de descuentos |
+  | `CODIGOSALVADOR` · `bernardo2` | personales, ya usados |
+  | `ELIAS20` · `enviobernardo` | personales, 0 usos |
+
+  Se usó `discountCodeDeactivate`, que es **reversible** con `discountCodeActivate`.
+  Sigue activo el descuento **automático** «Envío GRATIS sobre $50.000», que es aparte.
+
+- [ ] **El umbral de envío gratis está en $50.000, un 54% sobre el AOV de 32.471.**
+  Demasiado lejos para que empuje el carro. La nota de mercado sugería 39.990 (+23%),
+  que sí es alcanzable sumando un accesorio. Recalcular con `/economia-unitaria`.
+- [ ] **Dejar de dar códigos personales por WhatsApp.** Cada uno le enseña al cliente
+  que el precio de lista es negociable, y son los que canibalizaron `FUNDADOR15`.
 - [ ] **Cero recuperación de carro abandonado.** 38 llegaron a checkout, 11 compraron. 27 abandonos sin ningún email.
 - [ ] `index.html` en la raíz del repo es un stub sin usar (`<!-- Aquí va el código de Shopify -->`). Decidir: borrarlo o convertirlo en landing real.
 
