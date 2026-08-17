@@ -216,14 +216,26 @@ Requiere primero tener catálogo combinable.
   **Shopify no notifica al comerciante los registros de newsletter** — solo órdenes.
   Por eso nunca llegó un aviso: quedaron en Clientes, sin que nada los tocara.
   Sin plataforma de email conectada, nadie les escribió nunca.
-- [ ] 🔴 **`FUNDADOR15` lleva 2 meses regalando 15% y se usó UNA vez.**
-  El popup entrega el código a **todo el que juega, emboque o no** («Igual te ganaste el
-  15% por intentarlo»). El código existe y está `ACTIVE` desde el 2026-06-11,
-  **sin fecha de término y sin límite de usos** (`appliesOncePerCustomer: true`).
-  `asyncUsageCount = 1`.
-  Sobre el guante (21.990, margen 8.109 · 36,9%), un 15% se come **~41% del margen**:
-  deja ~4.810 · 21,9%. Está en el límite exacto de la regla de descuentos.
-  Decidir: ponerle vencimiento, acotarlo, o apagarlo.
+- [ ] 🔴 **`FUNDADOR15` se usó UNA vez, y no es porque esté roto.**
+  Config verificada: todos los clientes, sin mínimo, toda la tienda, sin vencimiento,
+  `ACTIVE` desde el 2026-06-11. La orden `#1009` lo usó de punta a punta, así que el
+  mecanismo funciona. Las dos causas reales:
+  1. **El código se muestra una sola vez en pantalla y nunca se envía por correo.**
+     El popup lo enseña tras dejar el email y marca `state.done` en `localStorage`;
+     si no lo copian en ese momento, no hay forma de recuperarlo.
+  2. **Lo canibalizan códigos hechos a mano que dan más.** `salvadorcartest@gmail.com`
+     tiene tags `popup-golf` — o sea ya tenía su 15% — y compró en `#1011` con
+     `CODIGOSALVADOR`: **10.000 sobre 29.940 = 25%**. `#1012` usó `bernardo2`:
+     8.500 sobre 30.590 = 21,7%. El 15% automático es la peor oferta de la mesa.
+- [ ] 🔴 **Descuentos sin control: 7 códigos activos a la vez.**
+  | Código | Título | Usos |
+  |---|---|---|
+  | `ALBATRO10` | «Bienvenida **15%** · mín $50.000» — el nombre dice 15, el código dice 10 | 0 |
+  | `ALBATRO15` | «15% primera compra (**legacy · no usar**)» — activo pese al propio título | 0 |
+  | `FUNDADOR15` | Fundador 15% toda la tienda | 1 |
+  | `FUNDADOR20` | «Acceso Fundador — Guante» · **20%, sobre el límite de la regla** | 0 |
+  | `CODIGOSALVADOR` · `ELIAS20` · `bernardo2` | códigos personales, activos sin vencimiento | 1 · 0 · 1 |
+  Ninguno tiene fecha de término. Hay que decidir cuáles sobreviven y ponerles tope.
 - [ ] **Cero recuperación de carro abandonado.** 38 llegaron a checkout, 11 compraron. 27 abandonos sin ningún email.
 - [ ] `index.html` en la raíz del repo es un stub sin usar (`<!-- Aquí va el código de Shopify -->`). Decidir: borrarlo o convertirlo en landing real.
 
