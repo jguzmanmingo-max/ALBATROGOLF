@@ -143,6 +143,62 @@ la tienda amateur.
 - **Guante Junior** → `CONTINUE` (misma línea de producción propia) y SKU
   `GUA-CUERO-JUNIOR`; antes era `null`.
 
+### 1.7 Los dos packs de tees, ahora distinguibles
+
+No eran duplicados: uno es de **bambú** y el otro de **plástico**. El problema era que
+el material solo aparecía en la descripción, así que en la grilla de una colección se
+leían igual y había que abrir cada ficha para saber cuál era cuál.
+
+| Antes | Ahora |
+|---|---|
+| `Pack de 50 Tees de Golf` | `Pack de 50 Tees de Golf — Bambú` |
+| `50 Uds. Tees de Golf profesionales, sistema en T de plástico de 70mm` | `Pack de 50 Tees de Golf — Plástico, Sistema en T 70 mm` |
+
+### 1.8 MIX Bajo Par — el cliente elige la talla del guante
+
+El bundle ofrecía `XS · S · M · L · XL`, pero **XS y XL no existen en tu línea de
+guantes**: alguien podía comprar una talla que no se puede armar.
+
+Ahora ofrece exactamente las tallas del guante: **`S · M · M-L · L`**, todas en
+`CONTINUE` para que ninguna talla bloquee la venta. La opción se renombró de `Talla` a
+**`Talla del guante`** — en un pack que también trae pelotas y tees, un selector que
+solo dice "Talla" es ambiguo. Se agregaron SKUs `MIX-BAJOPAR-S/M/ML/L`.
+
+Se reaprovechó el slot de XS como `M-L`, conservando sus 2 unidades. **XL se eliminó y
+con él sus 2 unidades: el total bajó de 9 a 7.** Como el stock de un bundle depende de
+lo que puedas armar y no de la talla, conviene que fijes el número real.
+
+> ⚠️ **El bundle solo sirve para diestros.** El guante suelto tiene `Mano`
+> (Izquierda · Derecha), pero el MIX no — asume mano izquierda. Un zurdo no puede
+> comprarlo. Si quieres cubrirlo, hay que agregarle una segunda opción `Mano`.
+
+### 1.9 Handles corregidos — 13, todos con redirección
+
+Trece URLs contradecían su producto. La peor: **el pack de 2 guantes vivía en
+`/products/pack-de-3-guantes-de-cuero-premium`.**
+
+Todos se cambiaron con `redirectNewHandle: true`, así que **Shopify dejó una redirección
+automática desde la URL vieja** — nada se rompe si esos links están en Meta Ads, en el
+catálogo de productos o indexados en Google.
+
+| Producto | Handle viejo | Handle nuevo |
+|---|---|---|
+| Pack de **2** Guantes | `pack-de-3-guantes-de-cuero-premium` | `pack-de-2-guantes-de-cuero-premium` |
+| Kettlebell **10** kg | `kettlebell-12kg` | `kettlebell-10kg` |
+| Par de Mancuernas **10** kg | `par-de-mancuernas-8kg-c-u` | `par-de-mancuernas-10kg` |
+| Mancuernas hexagonales **5** kg | `par-de-mancuernas-4kg-c-u` | `par-de-mancuernas-hexagonales-5kg` |
+| Medio Balón Cojín | `disco-de-equilibrio-inflable` | `medio-balon-cojin-masajeador` |
+| Banda de Resistencia de Tela | `set-de-3-bandas-de-resistencia-golf` | `banda-de-resistencia-de-tela` |
+| Set de Bandas de Resistencia | `set-bandas-de-resistencia-fitness-golf` | `set-de-bandas-de-resistencia` |
+| Creatina Gummies | `creatine-monoydrate-30-gummies` (mal escrito) | `creatina-monohidratada-30-gummies` |
+| Vaso Térmico **510** ml | `vaso-termico-de-500ml-con-pantalla` | `vaso-termico-acero-inoxidable-510ml` |
+| Clip Magnético | `clip-para-gorras-magnetico` (mal escrito) | `clip-magnetico-para-gorras` |
+| Tees de plástico | `50-uds-tees-…-de-plastico-de-70mm` (66 car.) | `pack-50-tees-golf-plastico` |
+| Tees de bambú | `pack-de-50-tees-de-golf` | `pack-50-tees-golf-bambu` |
+| Kit Recovery — Rodilla | `kit-recovery-04-rodilla` | `kit-recovery-rodilla` |
+
+Verificado con `urlRedirects`: las 13 redirecciones existen.
+
 ---
 
 ## 2. Lo que está esperando que publiques
@@ -232,14 +288,15 @@ quedaron resueltos acá.
 - [ ] **Stock real de la polera.** Las 2 variantes están en 0 y en `DENY`, así que
       muestran "Agotado" (esto es a propósito, según tu instrucción). Cuando compres,
       hay que volver a cargar tallas y cantidades.
-- [ ] **Posible duplicado de tees.** Quedan dos fichas: `Pack de 50 Tees de Golf`
-      (3 unidades) y `50 Tees de Golf Profesionales — Sistema en T 70 mm` (2 unidades).
-      Si son el mismo producto, hay que unificarlos.
-- [ ] **La toalla chica muestra una foto de la Hebilla Magnética.** Es una imagen
-      compartida con otro producto. No la borré porque puede ser intencional, pero en
-      una ficha de toalla se lee como error.
-- [ ] **`MIX Bajo Par` tiene talla `XS`**, que no existe en tu línea de guantes
-      (S · M · M-L · L). El pack incluye un guante, así que la talla debería coincidir.
+- [x] ~~**Posible duplicado de tees.**~~ **RESUELTO:** no eran duplicados, uno es de
+      bambú y el otro de plástico. Ahora el material está en el título.
+- [x] ~~**Foto de la Hebilla en la toalla chica.**~~ Revisado con el dueño: se queda.
+- [x] ~~**`MIX Bajo Par` con talla `XS`.**~~ **RESUELTO:** ahora ofrece las tallas del
+      guante (`S · M · M-L · L`).
+- [ ] **Stock real del MIX Bajo Par.** Quedó en 7 unidades después de sacar XL, pero el
+      stock de un bundle depende de cuántos puedas armar. Fija el número real.
+- [ ] **El MIX Bajo Par solo sirve para diestros.** No tiene opción `Mano`. Si quieres
+      vender a zurdos, hay que agregarla.
 - [ ] **Bloque de inventario para urgencia.** Horizon trae `product-inventory`, que
       muestra "Quedan 4". Con el guante L en 4 unidades y el pack M en 10, es urgencia
       real y gratis. Se agrega arrastrando el bloque en el editor de temas, entre el
@@ -248,21 +305,8 @@ quedaron resueltos acá.
       cantidad es 0 y la política es `CONTINUE` (así está escrito en
       `blocks/product-inventory.liquid`). O sea que las tallas del pack en 0 dirían
       "En stock". Es coherente con vender por encargo, pero decide si te sirve.
-- [ ] **Handles que no coinciden con el título.** No los toqué: cambiar un handle mueve
-      la URL, y aunque Shopify puede dejar una redirección, si tienes ese link en Meta
-      Ads o en el catálogo de productos conviene decidirlo a mano. Los ocho casos:
-
-      | Título | Handle actual | Problema |
-      |---|---|---|
-      | Pack de **2** Guantes | `pack-de-3-guantes-de-cuero-premium` | dice **3** |
-      | Kettlebell **10** kg | `kettlebell-12kg` | dice 12 |
-      | Par de Mancuernas **10** kg | `par-de-mancuernas-8kg-c-u` | dice 8 |
-      | Mancuernas hexagonales **5** kg | `par-de-mancuernas-4kg-c-u` | dice 4 |
-      | Medio Balón Cojín | `disco-de-equilibrio-inflable` | otro producto |
-      | Banda de Resistencia (individual) | `set-de-3-bandas-de-resistencia-golf` | dice set de 3 |
-      | Set de Bandas de Resistencia | `set-bandas-de-resistencia-fitness-golf` | ok, largo |
-      | Creatina Gummies | `creatine-monoydrate-30-gummies` | *monoydrate* mal escrito |
-
+- [x] ~~**Handles que no coinciden con el título.**~~ **RESUELTO 17 ago 2026:** los 13
+      corregidos con redirección. Detalle en §1.9.
 - [ ] **Taxonomía fragmentada.** 12 `productType` distintos para 79 productos:
       `Recovery & Health`, `Salud`, `Bienestar`, `Otro`, `DROPI CUP`, `Deportes`,
       `Hogar`, `Fitness Golf`, `Nutrición e Hidratación`, `Accesorios Golf`,
