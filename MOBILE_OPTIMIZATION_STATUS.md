@@ -238,21 +238,35 @@ Verificado con `urlRedirects`: las 13 redirecciones existen.
 
 ## 2. Lo que está esperando que publiques
 
-Hay un tema duplicado y **sin publicar** con la barra fija de "Agregar al carrito"
-para mobile ya instalada y funcionando:
+Hay un tema duplicado y **sin publicar** con dos cambios ya instalados. Un solo
+"Publicar" activa los dos:
 
 **Tema:** `MOBILE FIX — sticky ATC + swatches (PUBLICAR ESTA)`
 **ID:** `212411449597`
 
-**Previsualízalo antes de publicar:**
+| Cambio | Qué es |
+|---|---|
+| Barra fija de compra | Sticky "Agregar al carrito" en mobile (§2.1) |
+| Popup del putt, opción A | Arte mejorado en el minijuego `FUNDADOR15` (§2.2), misma física |
+
+**Previsualiza el sticky add-to-cart:**
 ```
 https://www.albatrogolf.cl/products/guante-de-golf-100-cuero-produccion-propia?preview_theme_id=212411449597
 ```
 Ábrelo en el celular, baja hasta que el botón original salga de pantalla, y la barra
 debe aparecer abajo. Prueba agregar al carro con ella.
 
-**Si te gusta:** Tienda en línea → Temas → en ese tema, `···` → **Publicar**.
+**Previsualiza el popup del putt** (se salta la espera de 15 s):
+```
+https://www.albatrogolf.cl/?preview_theme_id=212411449597&alb_golf=test
+```
+Espera ~0,4 s y debería abrirse solo. Juega un putt y confirma que el flujo
+juego → email → código sigue igual.
+
+**Si te gusta todo:** Tienda en línea → Temas → en ese tema, `···` → **Publicar**.
 **Si no:** bórralo. El tema actual sigue publicado e intacto, no se tocó nada en él.
+
+### 2.1 Sticky add-to-cart
 
 ### Por qué hacía falta código y no un toggle
 
@@ -290,6 +304,46 @@ el botón real **no renderiza nada** — falla en silencio, nunca rompe la pági
 Archivos tocados en el tema duplicado, nada más:
 - `snippets/albatro-sticky-atc.liquid` — nuevo
 - `layout/theme.liquid` — +2 líneas al final del `<body>` (5.199 → 5.343 bytes, verificado)
+
+### 2.2 Popup del putt — opción A (2D mejorado)
+
+Pediste hacer "más real y 3D" el popup `FUNDADOR15`. En vez de adivinar, se construyeron
+**dos prototipos aislados** (Artifacts, fuera del tema, cero riesgo) para decidir con el
+juego real en la mano:
+
+| | Opción A — 2D mejorado | Opción B — 3D real (Three.js) |
+|---|---|---|
+| Motor | Canvas 2D (el mismo de hoy) | WebGL |
+| Peso extra | ~14 KB | ~620 KB solo de librería |
+| Riesgo mobile | Ninguno | Real — el sitio ya tiene un problema de conversión mobile |
+
+**Elegiste A.** Aquí sí se tocó el archivo en vivo — con parche quirúrgico, no reescritura:
+
+1. Se bajó el snippet real desde Shopify y se verificó su checksum MD5 contra lo ya
+   leído en la sesión, para descartar cualquier deriva antes de tocarlo.
+2. Se armaron 9 reemplazos de texto exacto, cada uno verificado que aparecía **una sola
+   vez** en el archivo antes de aplicarse — si alguno hubiera aparecido 0 o 2+ veces, el
+   script aborta sin escribir nada.
+3. Después del parche, se diffearon 19 funciones/bloques que **no debían cambiar**
+   (`power()`, `physics()`, `sink()`, `miss()`, `missMsg()`, `finish()`, los 3 handlers
+   de puntero, `drawAim`, `drawBreak`, `drawTrail`, `drawTutorial`, `spawnConfetti`,
+   `drawParticles`, el formulario `{% form 'customer' %}` con sus tags
+   `popup-golf,lista-espera`, `return_to`, y el temporizador de 15 s con `localStorage`)
+   contra el original. **Los 19 salieron byte-idénticos.**
+
+Lo único que cambió: `drawSky`, `drawGreen`, `drawHole`, `drawFlag`, `drawGolfer`,
+`drawBall` (mejor luz, sombra en dos capas, proporciones), más una función nueva
+(`drawGrassFlecks`, chispas de pasto al golpear) y un parallax de entrada que es puramente
+un transform de `ctx` alrededor del dibujo — nunca toca las coordenadas reales de la
+pelota, así que no puede alterar la física ni el rango de arrastre (sigue en 130px, igual
+que siempre).
+
+Subida verificada dos veces: primero un error mío (subí un placeholder por accidente,
+detectado porque el tamaño reportado por Shopify no cuadraba — 11 bytes en vez de ~32KB),
+corregido de inmediato; después, checksum MD5 del archivo local vs. el que quedó en
+Shopify — **coinciden exactamente**.
+
+Detalle técnico completo en `theme/README.md`.
 
 ---
 

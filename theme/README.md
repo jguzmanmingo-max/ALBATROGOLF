@@ -53,3 +53,43 @@ El nombre nuevo no colisiona con ninguna. **No renombrar la clase a `ag-atc-bar`
 
 Borrar el tema duplicado, o quitar la línea `{% render 'albatro-sticky-atc' %}` de
 `layout/theme.liquid`. El tema publicado no fue modificado.
+
+## `snippets/albatro-popup-golf.liquid`
+
+Popup "El Putt Albatro" — el minijuego de captura de email que da `FUNDADOR15`. Este
+archivo reemplaza al que ya vivía en el tema, no es nuevo.
+
+**Instalado en:** el mismo tema preview `212411449597`, junto al sticky-ATC. Un solo
+"Publicar" activa los dos cambios.
+
+### Qué cambió y qué no
+
+Se comparó primero contra dos prototipos aislados (2D con arte mejorado vs. 3D real con
+Three.js/WebGL) para decidir con datos antes de tocar el archivo en vivo — el dueño
+eligió el 2D: mismo motor, cero riesgo nuevo de rendimiento en mobile, ~620 KB más
+liviano que la alternativa en WebGL.
+
+El parche se aplicó con reemplazo de texto verificado — cada bloque se confirmó que
+aparecía **exactamente una vez** antes de reemplazarlo, y se diffearon después las 19
+funciones que no debían tocarse (`power()`, `physics()`, `sink()`, `miss()`,
+`pointerdown/move/up`, el formulario de Shopify, el manejo de `localStorage`) contra el
+original — todas salieron **byte-idénticas**. Solo cambió el dibujo:
+
+- `drawSky`, `drawGreen`, `drawHole`, `drawFlag`, `drawGolfer`, `drawBall` — mismo
+  código parametrizado en `GX/GY/GW/GH/hole/start` que ya traía el original, solo con
+  mejor luz, sombra en dos capas y proporciones del golfista.
+- `drawGrassFlecks` (nueva) — chispas de pasto al golpear la pelota.
+- Parallax de entrada — un leve zoom al abrir el popup, aplicado solo como transform de
+  render (`ctx.save/translate/scale/restore` alrededor de los `draw*()`), nunca toca las
+  coordenadas reales de la pelota — así que no puede afectar la física ni la detección
+  de acierto.
+
+**La física, el rango de arrastre (130px), el ángulo de golpe, y las 3 fichas
+(juego → email → código) son exactamente las mismas.** El juego se ve mejor; no juega
+distinto.
+
+### Si hay que revertir
+
+El tema publicado no fue modificado — el popup en vivo sigue siendo el original hasta
+que se publique este tema. Para revertir solo este archivo dentro del preview, hay que
+volver a subir la versión que trae el tema `MAIN` (`211890307325`).
