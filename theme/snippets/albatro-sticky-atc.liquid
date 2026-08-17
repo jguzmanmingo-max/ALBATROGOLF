@@ -1,0 +1,189 @@
+{%- comment -%}
+  Albatro — barra fija de "Agregar al carrito" para mobile.
+
+  Horizon no trae sticky add-to-cart en mobile. Este snippet lo agrega sin
+  duplicar la logica del carrito: el boton de la barra hace click() sobre el
+  boton real de la ficha, asi que la seleccion de variante, el AJAX y el cart
+  drawer del tema siguen funcionando igual.
+
+  Se muestra solo en fichas de producto, solo bajo 750px, y solo cuando el
+  boton real ya salio de la pantalla. Si no encuentra el boton real, no
+  renderiza nada (falla en silencio, nunca rompe la pagina).
+{%- endcomment -%}
+
+{%- if template.name == 'product' and product != blank -%}
+  <div id="albatro-sticky-atc" class="albatro-sticky-atc" hidden>
+    <span class="albatro-sticky-atc__price" data-albatro-price>
+      {{- product.selected_or_first_available_variant.price | money -}}
+    </span>
+    <button type="button" class="albatro-sticky-atc__button" data-albatro-atc>
+      Agregar al carrito
+    </button>
+  </div>
+
+  {% style %}
+    .albatro-sticky-atc {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: var(--color-background, #fff);
+      border-block-start: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .albatro-sticky-atc[hidden],
+    .albatro-sticky-atc--oculta {
+      display: none;
+    }
+
+    .albatro-sticky-atc__price {
+      flex: 0 0 auto;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-foreground, #000);
+      white-space: nowrap;
+    }
+
+    .albatro-sticky-atc__button {
+      flex: 1 1 auto;
+      /* 48px es el minimo recomendado de area tactil */
+      min-height: 48px;
+      padding-inline: 16px;
+      border: 0;
+      border-radius: var(--style-border-radius-buttons, 4px);
+      background: var(--color-primary-button-background, var(--color-foreground, #000));
+      color: var(--color-primary-button-text, var(--color-background, #fff));
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .albatro-sticky-atc__button[disabled] {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    /* Evita que la barra tape el ultimo bloque de contenido */
+    body.albatro-has-sticky-atc {
+      padding-block-end: 76px;
+    }
+
+    /* Solo mobile: en desktop ya existe sticky_details_desktop */
+    @media screen and (min-width: 750px) {
+      .albatro-sticky-atc {
+        display: none !important;
+      }
+
+      body.albatro-has-sticky-atc {
+        padding-block-end: 0;
+      }
+    }
+  {% endstyle %}
+
+  <script>
+    (function () {
+      var barra = document.getElementById('albatro-sticky-atc');
+      if (!barra) return;
+
+      // Se mueve al <body> para que position:fixed se ancle al viewport y no a
+      // un ancestro con transform/filter, que crearia un containing block.
+      if (barra.parentElement !== document.body) {
+        document.body.appendChild(barra);
+      }
+
+      var proxy = barra.querySelector('[data-albatro-atc]');
+      var precioBarra = barra.querySelector('[data-albatro-price]');
+
+      // El tema puede re-renderizar la seccion del formulario al cambiar de
+      // variante, asi que el boton real se resuelve cada vez que se necesita.
+      var SELECTORES_BOTON = [
+        'product-form-component button[type="submit"]',
+        'form[action*="/cart/add"] button[type="submit"]',
+        '.product-form__submit',
+        'button[name="add"]',
+      ];
+
+      function botonReal() {
+        for (var i = 0; i < SELECTORES_BOTON.length; i++) {
+          var el = document.querySelector(SELECTORES_BOTON[i]);
+          if (el) return el;
+        }
+        return null;
+      }
+
+      function precioEnFicha() {
+        var contenedor = document.querySelector('.product-details, [class*="product-details"]');
+        if (!contenedor) return null;
+        return contenedor.querySelector('[class*="price"]');
+      }
+
+      if (!botonReal()) return;
+
+      proxy.addEventListener('click', function () {
+        var real = botonReal();
+        if (real) real.click();
+      });
+
+      function sincronizar() {
+        var real = botonReal();
+        if (!real) return;
+
+        proxy.disabled = real.disabled || real.getAttribute('aria-disabled') === 'true';
+
+        var etiqueta = (real.textContent || '').trim();
+        if (etiqueta) proxy.textContent = etiqueta;
+
+        // Solo espeja el precio si el texto parece un precio de verdad, para
+        // no reemplazar el valor correcto que ya rendereo Liquid.
+        var precio = precioEnFicha();
+        var texto = precio && precio.textContent.trim();
+        if (texto && texto.length < 40 && /\d/.test(texto)) {
+          precioBarra.textContent = texto;
+        }
+      }
+
+      var observador = null;
+
+      function observarBoton() {
+        var real = botonReal();
+        if (!real) return;
+        if (observador) observador.disconnect();
+        observador = new IntersectionObserver(
+          function (entradas) {
+            var visible = entradas[0].isIntersecting;
+            barra.hidden = visible;
+            document.body.classList.toggle('albatro-has-sticky-atc', !visible);
+          },
+          { threshold: 0 }
+        );
+        observador.observe(real);
+      }
+
+      sincronizar();
+      observarBoton();
+
+      // Re-cablea cuando el tema reemplaza el formulario, y mantiene
+      // sincronizados el precio y el estado de agotado.
+      var principal = document.getElementById('MainContent') || document.body;
+      var pendiente = null;
+      new MutationObserver(function () {
+        clearTimeout(pendiente);
+        pendiente = setTimeout(function () {
+          sincronizar();
+          observarBoton();
+        }, 120);
+      }).observe(principal, { childList: true, subtree: true });
+
+      // No tapar el cart drawer ni otros dialogos abiertos.
+      new MutationObserver(function () {
+        barra.classList.toggle('albatro-sticky-atc--oculta', !!document.querySelector('dialog[open]'));
+      }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
+    })();
+  </script>
+{%- endif -%}
