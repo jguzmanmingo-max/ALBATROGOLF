@@ -201,6 +201,17 @@ Requiere primero tener catálogo combinable.
 - [ ] **Boleta electrónica SII.** En Chile es obligatoria por Ley 21.210 desde 2021, también para e-commerce. Shopify **no** tiene integración nativa con el SII — requiere Lioren, Bsale, Nubox u OpenFactura.
 - [ ] **Medios de pago locales.** Confirmar Webpay/Transbank y Mercado Pago activos. Su ausencia es otra causa mayor de abandono en checkout.
 - [ ] **Auditar los 4 productos con `net_sales = 0`.**
+- [ ] 🔴 **La bio de Instagram manda a una página muerta.** Medido 2026-08-17:
+  **874 de 1.313 sesiones de Instagram (67%) aterrizan en `/pages/lista-espera`**, que
+  anuncia «Albatro abre el 28 de julio» — hace 20 días. No tiene ni un link a producto,
+  solo un formulario de email. Última edición: 14 de julio.
+  Instagram entrega 1.313 sesiones en 90 días, 5 agregados al carro y **0 compras**.
+  No es el contenido: es el destino del link.
+- [ ] 🔴 **74 correos de lista de espera sin tocar.** Los 74 clientes de la tienda están
+  etiquetados `lista-espera` y **todos con `SUBSCRIBED`**. Se les prometió «Guía del
+  Golfista gratis» y «beneficio de fundador el día 1: tu descuento antes que nadie»
+  para el 28 de julio. Nadie les escribió. Son 10× la base de clientes reales (7).
+  El tráfico de email en 90 días es **1 sesión**.
 - [ ] **Cero recuperación de carro abandonado.** 38 llegaron a checkout, 11 compraron. 27 abandonos sin ningún email.
 - [ ] `index.html` en la raíz del repo es un stub sin usar (`<!-- Aquí va el código de Shopify -->`). Decidir: borrarlo o convertirlo en landing real.
 
