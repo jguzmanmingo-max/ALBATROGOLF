@@ -64,7 +64,7 @@ Había **3 fichas para 1 producto**. En mobile eso obliga a salir y comparar en 
 Quedó en 2 variantes agotadas (`Verde Petróleo / M`, `Azul Navy / M`) según tu
 instrucción, hasta que compres stock. Cuando llegue, hay que volver a agregar las tallas.
 
-### 1.4 Texto alternativo de imágenes — 9 corregidos
+### 1.4 Texto alternativo de imágenes — 29 corregidos
 
 El `alt` es lo que se ve mientras carga la imagen en conexión lenta, y es lo que lee
 Google. Estaban vacíos o **con el producto equivocado**:
@@ -79,7 +79,18 @@ Google. Estaban vacíos o **con el producto equivocado**:
 
 El «Gray helmet for bikers» era dato de muestra de Shopify que quedó filtrado en el catálogo.
 
-### 1.5 Títulos — 11 corregidos
+Y otros datos simplemente equivocados:
+
+| Producto | `alt` antes | `alt` ahora |
+|---|---|---|
+| Par de Mancuernas **10 kg** | «Par de Mancuernas **9 kg** c/u» | «Par de mancuernas de 10 kg cada una» |
+| Mancuernas hexagonales **5 kg** | «…Hexagonales **4 kg** c/u» | «…hexagonales de 5 kg cada una» |
+| Vaso Térmico **510 ml** | «Vaso Térmico de **500 ml**…» | «…de acero inoxidable de 510 ml con pantalla» |
+| Kettlebell 8 kg **y** 10 kg | «Kettlebell **12 kg**» (una imagen compartida entre los dos, etiquetada con un tercer peso) | «Kettlebell de hierro fundido» (genérico, porque la imagen sirve a ambos) |
+
+Al cierre: **cero imágenes sin `alt`** en los 79 productos activos.
+
+### 1.5 Títulos — 44 corregidos
 
 Un título largo hace *wrap* a 3 líneas en celular y **empuja el botón de compra bajo
 el fold**. Y en una página de colección, mayúsculas y minúsculas mezcladas hacen ver
@@ -99,8 +110,38 @@ la tienda amateur.
 | `CREATINE MONOYDRATE 30 GUMMIES` | `Creatina Monohidratada — 30 Gummies` |
 | `Trx - Bandas` | `Kit de Entrenamiento TRX con Bandas` |
 | `Life Extension Nad` | `Life Extension NAD+` |
+| `12 pelotas premium USADAS grado A( Con detalles mínimos)` | `12 Pelotas de Golf Usadas — Grado A (con detalles mínimos)` |
+| `50 Uds. Tees de Golf profesionales, sistema en T de plástico de 70mm` (71 car.) | `50 Tees de Golf Profesionales — Sistema en T 70 mm` (50) |
+| `Llave de Ajuste Torx T25 para Palos de Golf con Mango en T` | `Llave Torx T25 para Palos de Golf` |
+| `Clip para gorras mágnetico` (mal escrito) | `Clip Magnético para Gorras` |
+| `Codera Elastica` | `Codera Elástica` |
+| `Vendaje Termico Masajeador Con Vibracion` | `Vendaje Térmico Masajeador con Vibración` |
+| `MAGNESIO COMPLEX 8 ELEMENTAL 1000 mg` | `Magnesio Complex 8 Elemental 1000 mg` |
+| `Pack 5 marcas de golf marca Albatro golf` | `Pack 5 Marcadores de Golf Albatro` |
+| `Recovery #1` (placeholder) | `Kit Recovery — Rodilla` |
+| `Banda de Resistencia de Tela Golf — Light / Medium / Heavy (individual) colores` (78) | `Banda de Resistencia de Tela — Light / Medium / Heavy` (52) |
+| `2 Pesas de Tobillo Ajustable 2,5 kg Pro— Rehabilitación de Rodilla` | `2 Pesas de Tobillo Ajustables 2,5 kg — Rehabilitación de Rodilla` |
+
+…más 20 correcciones de acentuación y mayúsculas del mismo tipo (`Llavero de golf` →
+`Llavero de Golf Albatro`, `Compresa de hielo` → `Compresa de Hielo`,
+`Masajeador Con Terapia De Luz Roja` → `Masajeador con Terapia de Luz Roja`, etc.).
 
 **Los handles (URLs) no se tocaron.** Ningún link existente se rompe.
+
+### 1.6 Otros arreglos de catálogo
+
+- **`productType` vacío en 4 productos de golf** → asignados: los tees, la llave Torx y
+  la toalla chica a `Accesorios Golf`; las pelotas grado A a `Pelotas Usadas`. Sin
+  categoría no aparecían en filtros ni en colecciones automáticas.
+- **Opciones con nombre en minúscula**, que se leen mal en el selector:
+  `color` / `amarillo` → `Color` / `Amarillo`; `rodillera` → `Talla`. Renombradas en el
+  lugar con `productOptionUpdate`, sin tocar variantes ni inventario.
+- **Tallas de la rodillera estaban en orden `M · L · S · XL`** → reordenadas a
+  `S · M · L · XL`. Nadie busca su talla en orden aleatorio.
+- **Los dos productos «Próximamente — Fitness Golf #1 y #2»** estaban `ACTIVE` con stock
+  0 → pasados a `DRAFT`. En mobile eran taps desperdiciados.
+- **Guante Junior** → `CONTINUE` (misma línea de producción propia) y SKU
+  `GUA-CUERO-JUNIOR`; antes era `null`.
 
 ---
 
@@ -182,22 +223,23 @@ quedaron resueltos acá.
 
 ## 4. Lo que queda y necesita tu decisión
 
-- [x] ~~**Política de inventario.**~~ **RESUELTO 17 ago 2026:** guante y pack en
+- [x] ~~**Política de inventario.**~~ **RESUELTO 17 ago 2026:** guante, pack y Junior en
       `CONTINUE`. Venta por encargo.
-- [ ] **El badge de despacho promete 3–5 días** y ahora puede quedar cortito.
-      En `snippets/albatro-effects.liquid` hay un script que reescribe el badge a
-      «🕐 Despacho en 3-5 días hábiles a todo Chile». Con venta por encargo, un guante
-      que hay que producir no sale en 3–5 días. Conviene un texto distinto cuando el
-      stock está en 0 — o subir el plazo prometido — para no generar reclamos.
+- [x] ~~**Badge de despacho 3–5 días.**~~ **Revisado 17 ago 2026:** el dueño confirmó
+      que tiene stock de guantes, así que el plazo se cumple. No se toca.
+- [x] ~~**Productos "Próximamente" activos.**~~ Pasados a `DRAFT`.
+- [x] ~~**`Recovery #1` con nombre placeholder.**~~ Renombrado a `Kit Recovery — Rodilla`.
 - [ ] **Stock real de la polera.** Las 2 variantes están en 0 y en `DENY`, así que
       muestran "Agotado" (esto es a propósito, según tu instrucción). Cuando compres,
       hay que volver a cargar tallas y cantidades.
-- [ ] **El guante Junior sigue en `DENY`.** No lo toqué porque no lo nombraste. Si la
-      venta por encargo aplica a toda la línea propia, hay que cambiarlo también.
-- [ ] **Dos productos "Próximamente" están ACTIVOS con stock 0**
-      (`Próximamente — Fitness Golf #1` y `#2`). En mobile son taps desperdiciados.
-      Deberían pasar a borrador.
-- [ ] **`Recovery #1`** sigue con nombre de placeholder (handle: `kit-recovery-04-rodilla`).
+- [ ] **Posible duplicado de tees.** Quedan dos fichas: `Pack de 50 Tees de Golf`
+      (3 unidades) y `50 Tees de Golf Profesionales — Sistema en T 70 mm` (2 unidades).
+      Si son el mismo producto, hay que unificarlos.
+- [ ] **La toalla chica muestra una foto de la Hebilla Magnética.** Es una imagen
+      compartida con otro producto. No la borré porque puede ser intencional, pero en
+      una ficha de toalla se lee como error.
+- [ ] **`MIX Bajo Par` tiene talla `XS`**, que no existe en tu línea de guantes
+      (S · M · M-L · L). El pack incluye un guante, así que la talla debería coincidir.
 - [ ] **Bloque de inventario para urgencia.** Horizon trae `product-inventory`, que
       muestra "Quedan 4". Con el guante L en 4 unidades y el pack M en 10, es urgencia
       real y gratis. Se agrega arrastrando el bloque en el editor de temas, entre el
@@ -206,12 +248,28 @@ quedaron resueltos acá.
       cantidad es 0 y la política es `CONTINUE` (así está escrito en
       `blocks/product-inventory.liquid`). O sea que las tallas del pack en 0 dirían
       "En stock". Es coherente con vender por encargo, pero decide si te sirve.
-- [ ] **Handles que no coinciden con el título** (no los toqué porque cambiarlos rompe
-      URLs): el pack dice `pack-de-3-guantes` (son 2), `Kettlebell 10kg` →
-      `kettlebell-12kg`, `Par de Mancuernas 10kg` → `par-de-mancuernas-8kg-c-u`.
-- [ ] **Taxonomía sin normalizar.** Conviven `Recovery & Health`, `Salud`, `Bienestar`,
-      `Otro`, `DROPI CUP`, `Deportes`, `Hogar`, `Fitness Golf` y productos con
-      `productType` vacío.
+- [ ] **Handles que no coinciden con el título.** No los toqué: cambiar un handle mueve
+      la URL, y aunque Shopify puede dejar una redirección, si tienes ese link en Meta
+      Ads o en el catálogo de productos conviene decidirlo a mano. Los ocho casos:
+
+      | Título | Handle actual | Problema |
+      |---|---|---|
+      | Pack de **2** Guantes | `pack-de-3-guantes-de-cuero-premium` | dice **3** |
+      | Kettlebell **10** kg | `kettlebell-12kg` | dice 12 |
+      | Par de Mancuernas **10** kg | `par-de-mancuernas-8kg-c-u` | dice 8 |
+      | Mancuernas hexagonales **5** kg | `par-de-mancuernas-4kg-c-u` | dice 4 |
+      | Medio Balón Cojín | `disco-de-equilibrio-inflable` | otro producto |
+      | Banda de Resistencia (individual) | `set-de-3-bandas-de-resistencia-golf` | dice set de 3 |
+      | Set de Bandas de Resistencia | `set-bandas-de-resistencia-fitness-golf` | ok, largo |
+      | Creatina Gummies | `creatine-monoydrate-30-gummies` | *monoydrate* mal escrito |
+
+- [ ] **Taxonomía fragmentada.** 12 `productType` distintos para 79 productos:
+      `Recovery & Health`, `Salud`, `Bienestar`, `Otro`, `DROPI CUP`, `Deportes`,
+      `Hogar`, `Fitness Golf`, `Nutrición e Hidratación`, `Accesorios Golf`,
+      `Pelotas Usadas`, `Marca Albatro`. Ya no hay ninguno vacío, pero `Salud` /
+      `Bienestar` / `Recovery & Health` son la misma cosa en tres idiomas de
+      clasificación, y `DROPI CUP` es nombre de proveedor, no de categoría. Normalizar
+      requiere que decidas el esquema — por eso no lo hice solo.
 
 ---
 
@@ -244,6 +302,7 @@ falla, no deja el producto a medias.
 | Barra sticky de compra | +0,3 a +0,6 pts |
 | Títulos cortos → botón sobre el fold | +0,2 a +0,4 pts |
 | `alt` correcto (carga lenta + SEO) | +0,1 a +0,2 pts |
+| Catálogo sin faltas de ortografía ni mayúsculas rotas | difícil de aislar, pero la confianza es lo que sostiene el resto |
 
 **De 1,0% a un rango realista de 2,4–3,7%** en una o dos semanas, midiendo después de
 publicar el tema. El benchmark de la categoría es 6–10%, así que incluso el techo de
