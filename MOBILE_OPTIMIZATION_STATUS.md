@@ -36,9 +36,9 @@ Ahora son **dos selectores de botones**: `Talla` (S · M · M-L · L) y `Mano`
 | M / Derecha | `GUA-CUERO-M-DER` | 5 |
 | | **Total** | **106** ✅ |
 
-> ⚠️ **Las variantes nuevas quedaron en `DENY`** (no vende sin stock). Si quieres
-> aceptar pedidos por encargo — que tiene sentido, porque produces los guantes tú —
-> hay que cambiarlas a `CONTINUE`. Es una decisión tuya, no la tomé.
+**Política de inventario: `CONTINUE`** en las 5 variantes — decidido por el dueño el
+17 ago 2026. Se vende **por encargo**: la ficha sigue comprable aunque el stock llegue
+a 0. Tiene sentido porque los guantes son de producción propia.
 
 ### 1.2 Pack de 2 guantes — reestructurado
 
@@ -47,11 +47,11 @@ Mismo problema. Su opción estaba **vinculada a la taxonomía estándar de Shopi
 desvincularla y rehacerla como opción propia.
 
 `S` · `M` · `M-L` como botones cortos. SKUs `PACK2-GUA-S/M/ML`. Stock intacto:
-M = 10, S = 0, M-L = 0. Se preservó `inventoryPolicy: CONTINUE` tal como estaba.
+M = 10, S = 0, M-L = 0.
 
-> ⚠️ Con `CONTINUE` y stock 0, las tallas S y M-L **se pueden comprar sin existir**.
-> Eso es lo que produjo el stock en −1 que aparecía en el informe. Decide si quieres
-> venta por encargo (dejar `CONTINUE`) o mostrar "Agotado" (cambiar a `DENY`).
+**Política de inventario: `CONTINUE`** — ya estaba así y se mantuvo. Coincide con la
+decisión del guante: venta por encargo. Esto explica el stock en −1 que aparecía en el
+informe: no era un bug, era una venta por encargo funcionando como corresponde.
 
 ### 1.3 Poleras — consolidadas
 
@@ -182,11 +182,18 @@ quedaron resueltos acá.
 
 ## 4. Lo que queda y necesita tu decisión
 
-- [ ] **Política de inventario.** Guante = `DENY`, Pack = `CONTINUE`. Hay que unificar:
-      ¿aceptas pedidos por encargo o muestras "Agotado"? Con `CONTINUE` y stock 0 se
-      venden cosas que no existen.
-- [ ] **Stock real de la polera.** Las 2 variantes están en 0. Cuando compres, hay que
-      volver a cargar tallas y cantidades.
+- [x] ~~**Política de inventario.**~~ **RESUELTO 17 ago 2026:** guante y pack en
+      `CONTINUE`. Venta por encargo.
+- [ ] **El badge de despacho promete 3–5 días** y ahora puede quedar cortito.
+      En `snippets/albatro-effects.liquid` hay un script que reescribe el badge a
+      «🕐 Despacho en 3-5 días hábiles a todo Chile». Con venta por encargo, un guante
+      que hay que producir no sale en 3–5 días. Conviene un texto distinto cuando el
+      stock está en 0 — o subir el plazo prometido — para no generar reclamos.
+- [ ] **Stock real de la polera.** Las 2 variantes están en 0 y en `DENY`, así que
+      muestran "Agotado" (esto es a propósito, según tu instrucción). Cuando compres,
+      hay que volver a cargar tallas y cantidades.
+- [ ] **El guante Junior sigue en `DENY`.** No lo toqué porque no lo nombraste. Si la
+      venta por encargo aplica a toda la línea propia, hay que cambiarlo también.
 - [ ] **Dos productos "Próximamente" están ACTIVOS con stock 0**
       (`Próximamente — Fitness Golf #1` y `#2`). En mobile son taps desperdiciados.
       Deberían pasar a borrador.
@@ -195,6 +202,10 @@ quedaron resueltos acá.
       muestra "Quedan 4". Con el guante L en 4 unidades y el pack M en 10, es urgencia
       real y gratis. Se agrega arrastrando el bloque en el editor de temas, entre el
       selector de variantes y el botón de compra.
+      ⚠️ Ojo con la venta por encargo: el bloque muestra **"En stock"** cuando la
+      cantidad es 0 y la política es `CONTINUE` (así está escrito en
+      `blocks/product-inventory.liquid`). O sea que las tallas del pack en 0 dirían
+      "En stock". Es coherente con vender por encargo, pero decide si te sirve.
 - [ ] **Handles que no coinciden con el título** (no los toqué porque cambiarlos rompe
       URLs): el pack dice `pack-de-3-guantes` (son 2), `Kettlebell 10kg` →
       `kettlebell-12kg`, `Par de Mancuernas 10kg` → `par-de-mancuernas-8kg-c-u`.
