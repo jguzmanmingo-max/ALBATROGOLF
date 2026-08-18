@@ -69,10 +69,13 @@ cream rim lighting (#F6F5EC), glossy sci-fi surface detail with visible mechanic
 joint lines and panel seams, centered composition, no text, no watermark
 ```
 
-Generar con Higgsfield (`generate_image` / `generate_image_batch`, disponible en
-este chat) o pegar en Canva. Una vez generadas, guardar acá como:
-- `albo-robot-swing.png` (pose de acción)
-- `albo-robot-reposo.png` (pose calmada)
+Generadas con Higgsfield (`soul_2`):
+- Pose de swing: https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_222128_79860253-01b4-4288-8250-30038fca7311.png
+- Pose de reposo: https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_222130_24455a22-e32e-44f1-9b47-0486b687db9f.png
+
+Pendiente bajarlas y guardarlas acá mismo como `albo-robot-swing.png` y
+`albo-robot-reposo.png` (mismo bloqueo de red que las ilustraciones anteriores —
+bájalas tú con clic derecho → guardar como).
 
 ---
 
