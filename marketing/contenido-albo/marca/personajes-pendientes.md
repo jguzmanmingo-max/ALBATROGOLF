@@ -9,24 +9,23 @@ metálica roja/dorada/azul, se transforma con chispazos eléctricos en un mecha 
 casco de ave, sostiene un palo de golf, núcleo y visor con brillo azul neón, swing con
 estela de energía, iluminación dramática de bajo perfil.
 
-Esto **no calza con la paleta verde/dorado/crema** del logomark SVG ni con la
-personalidad "coach cercano, nunca arrogante" documentada en
-`estrategia/estrategia-avatar-golf.md` sección 2 — es un giro de tono, de mascota
-cálida a personaje de acción/sci-fi. Lo dejo generado abajo tal como se pidió; si el
-logomark y la paleta también deben cambiar para hacer juego con este Albo nuevo,
-avisa y se actualiza junto con el resto de la identidad de marca.
+**Corregido a la paleta de marca** (verde fairway / dorado albatros / crema
+pergamino — ver `estrategia/estrategia-avatar-golf.md` sección 2) en vez del
+rojo/azul-neón del video de referencia: mismo concepto de mecha transformer, colores
+de Albatro Golf.
 
-### Prompt nuevo — Albo robot transformer
+### Prompt — Albo robot transformer, pose de swing
 
 ```
 Mascot character illustration of a heroic albatross-bird transforming robot dressed
-as a golf champion: sleek metallic red and gold armor plating with glossy chrome
-highlights, avian-shaped helmet with a sharp beak silhouette, glowing neon-blue
-energy core in the chest and glowing blue visor eyes, one arm gripping a golf club
-raised mid-downswing, dynamic glowing blue energy trail arcing from the clubhead,
-powerful low-angle hero stance, dark moody background with cool blue rim lighting
-and soft lens glow, glossy sci-fi surface detail with visible mechanical joint
-lines and panel seams, centered composition, no text, no watermark
+as a golf champion: sleek metallic forest-green armor plating (#1E5B41) with glossy
+antique-gold trim and highlights (#B8892B), avian-shaped helmet with a sharp beak
+silhouette, glowing warm amber-gold energy core in the chest and glowing gold visor
+eyes, one arm gripping a golf club raised mid-downswing, dynamic glowing gold energy
+trail arcing from the clubhead, powerful low-angle hero stance, dark forest-green
+moody background with warm cream rim lighting (#F6F5EC) and soft golden lens glow,
+glossy sci-fi surface detail with visible mechanical joint lines and panel seams,
+centered composition, no text, no watermark
 ```
 
 **Variante calmada** (de pie, sin la acción del swing — para foto de perfil, marca
@@ -34,11 +33,12 @@ de agua o miniatura donde una pose explosiva estorba):
 
 ```
 Mascot character illustration of a heroic albatross-bird transforming robot dressed
-as a golf champion, standing at rest: sleek metallic red and gold armor plating with
-glossy chrome highlights, avian-shaped helmet with a sharp beak silhouette, glowing
-neon-blue energy core in the chest and glowing blue visor eyes, one arm resting a
-golf club against its shoulder, confident relaxed stance, dark moody background
-with cool blue rim lighting, glossy sci-fi surface detail with visible mechanical
+as a golf champion, standing at rest: sleek metallic forest-green armor plating
+(#1E5B41) with glossy antique-gold trim and highlights (#B8892B), avian-shaped
+helmet with a sharp beak silhouette, glowing warm amber-gold energy core in the
+chest and glowing gold visor eyes, one arm resting a golf club against its
+shoulder, confident relaxed stance, dark forest-green moody background with warm
+cream rim lighting (#F6F5EC), glossy sci-fi surface detail with visible mechanical
 joint lines and panel seams, centered composition, no text, no watermark
 ```
 
