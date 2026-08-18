@@ -2,71 +2,68 @@
 
 **Enviar antes del:** 24 de agosto (el código vence ese día a las 23:59)
 **Lista:** los 65 correos de `albatro-leads-para-escribir.csv`
+**Página de canje (interactiva):** ver nota de hosting al final — pendiente decidir si queda en
+albatrogolf.cl o en el link de preview.
 
 ---
 
-## Asunto (elige uno, o A/B si tu herramienta lo permite)
+## Por qué se rehizo
 
-**A** — Tu 15% de fundador sigue esperándote (vence el 24 de agosto)
-**B** — Guardamos tu código FUNDADOR15 — más envío gratis
+La v1 metía todo el contenido (código + 3 productos + condiciones) directo en el cuerpo del
+correo — plano, sin diseño, y con una frase floja ("precio de golfista que no le regala nada a
+nadie"). Se separó en dos piezas:
+
+1. **El correo** — corto, con un solo gancho y un solo botón. Su trabajo es que lo abran y
+   hagan clic.
+2. **La página de canje** — ahí vive la experiencia: el código con botón de copiar, countdown
+   en vivo al 24 de agosto, y los 3 productos con link directo a comprar (con el código
+   pre-aplicado vía `/discount/FUNDADOR15?redirect=...`).
+
+## Asunto (elige uno)
+
+**A** — Llegaste primero. Esto es tuyo.
+**B** — Tu código de fundador sigue esperándote
 
 ---
 
 ## Cuerpo
 
 ```
-Asunto: Tu 15% de fundador sigue esperándote (vence el 24 de agosto)
+Asunto: Llegaste primero. Esto es tuyo.
 
 Hola,
 
-Jugaste (o te anotaste) en Albatro Golf, y ese código de fundador
-sigue siendo tuyo. No se lo mandamos a nadie más — es tuyo porque
-llegaste primero.
+Jugaste el Putt Albatro, o te anotaste antes de que abriéramos.
+Esa espera vale un código que no le dimos a nadie más.
 
-FUNDADOR15
-15% de descuento + envío gratis, sin mínimo de compra.
-Válido hasta el 24 de agosto.
+FUNDADOR15 — 15% + envío gratis, sin mínimo.
+Se acaba el 24 de agosto a las 23:59.
 
-[BOTÓN: Usar mi código]
-
-Qué comprar con eso:
-
-→ Guante de cuero 100% cabretta — el que usan los que ya juegan
-   con Albatro. Agarre real, no de vitrina.
-→ Mix de pelotas usadas grado AAA — misma pelota, precio de golfista
-   que no le regala nada a nadie.
-→ Pack de 2 guantes — si juegas seguido, te conviene tener repuesto.
-
-El código es de un solo uso por persona y se acaba el 24 de agosto.
-Después de esa fecha deja de funcionar — no vuelve a activarse solo.
+👉 Ver mi código y el kit de fundador
 
 Nos vemos en la cancha.
 Albatro Golf
 ```
 
+El botón lleva a la página de canje (código + countdown + los 3 productos que más se venden:
+guante de cuero, pelotas AAA, pack de 2 guantes).
+
 ---
 
 ## Notas para ti (José)
 
-1. **No puedo mandar este correo yo.** No tienes Klaviyo conectado y
-   Gmail está instalado pero apagado en este chat. Revisa si tienes
-   **Shopify Email** instalada (es gratis, viene con la tienda) — ahí
-   puedes crear la campaña, pegar este texto, y subir el CSV de los 65
-   como segmento de clientes. Si no la tienes, Configuración → Apps →
-   buscar "Shopify Email" e instalarla toma 2 minutos.
+1. **Dónde vive la página de canje** — está construida y publicada como preview. Falta decidir
+   si la instalo como página real en albatrogolf.cl (mejor para confianza del cliente, un poco
+   más de trabajo porque hay que verificar que no choque visualmente con el tema Horizon) o si
+   por ahora se manda el link de preview. Pregunté esto en el chat.
 
-2. **El botón "Usar mi código"** debería llevar a la colección de golf
-   core (guantes + pelotas), no al home. Si me confirmas la URL de esa
-   colección te dejo el link armado.
+2. **Quién manda el correo** — el Gmail conectado en este chat es `jguzmanmingo@gmail.com`, no
+   `hola@albatrogolf.cl`. La herramienta de Gmail no deja elegir un remitente distinto al de la
+   cuenta conectada. Para que salga de `hola@albatrogolf.cl` hay dos caminos: (a) conectas esa
+   casilla en los ajustes de conectores de este chat, o (b) te dejo el borrador armado
+   (asunto + cuerpo + los 65 en copia oculta) y lo mandas tú mismo desde donde administres esa
+   casilla.
 
-3. **Por qué dejé el 15% tal cual, ni más ni menos:** ya es lo que les
-   prometiste. Bajarlo se siente como estafa; subirlo te deja sin
-   margen real (a 21.990 con 15% + envío, el margen del guante queda
-   en ~11% — sano para un envío puntual a 65 personas, pero no para
-   dejarlo corriendo indefinido, por eso el vencimiento de 7 días).
-
-4. **Los 3 que ya compraron** (eliasjmc, salvadorcartest, ftorresh61)
-   no están en esta lista — no tiene sentido mandarles un código para
-   la primera compra que ya hicieron. Si quieres, armamos un correo
-   distinto para ellos (upsell, no descuento de bienvenida).
-```
+3. **Los 3 que ya compraron** (eliasjmc, salvadorcartest, ftorresh61) — verificado de nuevo en
+   vivo contra Shopify antes de esta versión, siguen fuera de la lista. Cero duplicados: 65
+   filas, 65 correos únicos.
