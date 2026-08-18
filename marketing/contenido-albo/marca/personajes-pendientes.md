@@ -1,34 +1,67 @@
 # Ilustraciones de personaje de Albo — pendiente bajar
 
-Las 2 variantes de Albo de cuerpo entero (golfista albatros, visera, palo al hombro,
-pose de coach) **no están en este repo** porque el entorno de trabajo no tiene permiso
-de red para bajar el binario del generador de imágenes hacia acá. Están guardadas en
-otro lado, listas para que las bajes tú en un clic:
+## ⚠️ Cambio de línea visual (18 ago 2026)
 
-## Dónde están
+El personaje se está reorientando de "mascota amigable de coach" a **robot
+transformer** — pájaro mecánico que se transforma en mecha humanoide, en la línea del
+video de referencia que subiste (`e09b5a14-hf_20260608_151436_...mp4`): figura
+metálica roja/dorada/azul, se transforma con chispazos eléctricos en un mecha con
+casco de ave, sostiene un palo de golf, núcleo y visor con brillo azul neón, swing con
+estela de energía, iluminación dramática de bajo perfil.
 
-**Tu cuenta de Canva** — busca en tus archivos subidos:
+Esto **no calza con la paleta verde/dorado/crema** del logomark SVG ni con la
+personalidad "coach cercano, nunca arrogante" documentada en
+`estrategia/estrategia-avatar-golf.md` sección 2 — es un giro de tono, de mascota
+cálida a personaje de acción/sci-fi. Lo dejo generado abajo tal como se pidió; si el
+logomark y la paleta también deben cambiar para hacer juego con este Albo nuevo,
+avisa y se actualiza junto con el resto de la identidad de marca.
+
+### Prompt nuevo — Albo robot transformer
+
+```
+Mascot character illustration of a heroic albatross-bird transforming robot dressed
+as a golf champion: sleek metallic red and gold armor plating with glossy chrome
+highlights, avian-shaped helmet with a sharp beak silhouette, glowing neon-blue
+energy core in the chest and glowing blue visor eyes, one arm gripping a golf club
+raised mid-downswing, dynamic glowing blue energy trail arcing from the clubhead,
+powerful low-angle hero stance, dark moody background with cool blue rim lighting
+and soft lens glow, glossy sci-fi surface detail with visible mechanical joint
+lines and panel seams, centered composition, no text, no watermark
+```
+
+**Variante calmada** (de pie, sin la acción del swing — para foto de perfil, marca
+de agua o miniatura donde una pose explosiva estorba):
+
+```
+Mascot character illustration of a heroic albatross-bird transforming robot dressed
+as a golf champion, standing at rest: sleek metallic red and gold armor plating with
+glossy chrome highlights, avian-shaped helmet with a sharp beak silhouette, glowing
+neon-blue energy core in the chest and glowing blue visor eyes, one arm resting a
+golf club against its shoulder, confident relaxed stance, dark moody background
+with cool blue rim lighting, glossy sci-fi surface detail with visible mechanical
+joint lines and panel seams, centered composition, no text, no watermark
+```
+
+Generar con Higgsfield (`generate_image` / `generate_image_batch`, disponible en
+este chat) o pegar en Canva. Una vez generadas, guardar acá como:
+- `albo-robot-swing.png` (pose de acción)
+- `albo-robot-reposo.png` (pose calmada)
+
+---
+
+## Versión anterior — mascota amigable (referencia, sigue disponible)
+
+Las 2 variantes originales de Albo de cuerpo entero (golfista albatros amigable,
+visera, palo al hombro, pose de coach) **no están en este repo** porque el entorno de
+trabajo no tiene permiso de red para bajar el binario del generador de imágenes hacia
+acá. Siguen guardadas en tu cuenta de Canva por si se vuelve a esa línea:
+
 - `Albo - Avatar Albatro Golf (opción 1)`
 - `Albo - Avatar Albatro Golf (opción 2)`
-
-**O directo por link** (resolución 2048×2048, clic derecho → guardar como):
 - Opción 1: https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_141328_c9a46494-6912-4c05-a213-e3fe5efc7d57.png
 - Opción 2: https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_141327_5ce166b5-ed17-4bad-b02a-18cc2ce0ab19.png
 
-## Qué hacer con ellas
-
-1. Bájalas (PNG, fondo del generador — probablemente con fondo de color, no transparente).
-2. En Canva o con `image_remove_background` (Adobe, disponible en este chat) sácales el fondo.
-3. Guárdalas acá mismo como:
-   - `albo-personaje-opcion1.png`
-   - `albo-personaje-opcion2.png`
-4. Elige UNA de las dos como la oficial (la otra queda de respaldo/variante) — se usa como
-   sticker de reacción en miniaturas y como intro/outro.
-
-## Si quieres más variantes (otra pose, otra expresión)
-
-Mismo prompt que generó estas dos, para pedir variaciones en Higgsfield/Canva/cualquier
-generador de imagen:
+Prompt que las generó:
 
 ```
 Mascot logo illustration of a friendly athletic albatross bird character dressed as a

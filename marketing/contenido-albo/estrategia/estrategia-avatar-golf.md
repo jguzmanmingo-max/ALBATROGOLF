@@ -54,7 +54,7 @@ También puedes abrirlas directo desde estos links (resolución 2048×2048):
 
 > Nota técnica honesta: este entorno de trabajo no tiene permiso de red para descargar el archivo binario directo del generador de imágenes hacia este repositorio (por eso no hay un `.png` de Albo en la carpeta `marketing/avatar/` junto al SVG). Por eso las subí directo a tu Canva — ahí sí las puedes abrir, exportar y guardar en tu PC en un clic. Si quieres, en tu próxima sesión conmigo puedo generar más variantes (otra pose, otra expresión) con el mismo prompt de abajo.
 
-**Prompt usado (para regenerar o pedir variaciones, en Higgsfield/Canva/cualquier generador de imagen):**
+**Prompt original (mascota amigable):**
 ```
 Mascot logo illustration of a friendly athletic albatross bird character dressed as a
 golf coach: white and navy body, wearing a forest-green polo shirt and a green golf
@@ -63,6 +63,14 @@ big warm smile, bold clean vector shapes, flat modern sports-brand mascot style,
 smooth outlines, minimal shading, centered composition, solid deep-green circular
 background, no text, no watermark
 ```
+
+> ⚠️ **18 ago 2026 — línea visual nueva en evaluación.** A partir de un video de
+> referencia (pájaro mecánico que se transforma en mecha, rojo/dorado/azul, energía
+> neón azul), se generó un prompt alternativo de Albo como **robot transformer** —
+> tono de acción/sci-fi, no calza con la paleta verde/dorado/crema de abajo ni con la
+> personalidad "coach cercano" de esta sección. Prompt completo (pose de swing y pose
+> en reposo) en `marca/personajes-pendientes.md`. Pendiente decidir si esta línea
+> reemplaza a la mascota amigable o queda como variante para piezas puntuales.
 
 ---
 
