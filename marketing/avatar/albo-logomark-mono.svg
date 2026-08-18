@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Albo, la mascota de Albatro Golf (version monocromatica sin fondo)">
+  <title>Albo — Albatro Golf (mono, sin fondo)</title>
+  <path d="M50,132 C64,104 82,90 96,93 C106,95 112,102 118,112 C124,101 131,94 141,92 C156,89 174,103 190,124"
+        fill="none" stroke="#1E5B41" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="176" cy="144" r="7" fill="#B8892B"/>
+  <path d="M150,150 Q165,148 176,144" fill="none" stroke="#B8892B" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+</svg>
