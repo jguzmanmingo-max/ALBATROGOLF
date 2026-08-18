@@ -7,7 +7,7 @@
 
 ## Asunto (elige uno, o A/B si tu herramienta lo permite)
 
-**A** — Tu 15% de fundador sigue esperándote (vence en 7 días)
+**A** — Tu 15% de fundador sigue esperándote (vence el 24 de agosto)
 **B** — Guardamos tu código FUNDADOR15 — más envío gratis
 
 ---
@@ -15,7 +15,7 @@
 ## Cuerpo
 
 ```
-Asunto: Tu 15% de fundador sigue esperándote (vence en 7 días)
+Asunto: Tu 15% de fundador sigue esperándote (vence el 24 de agosto)
 
 Hola,
 
@@ -37,8 +37,8 @@ Qué comprar con eso:
    que no le regala nada a nadie.
 → Pack de 2 guantes — si juegas seguido, te conviene tener repuesto.
 
-El código es de un solo uso y se acaba el 24 de agosto. Después de
-esa fecha, vuelve a ser 15% sin el envío gratis.
+El código es de un solo uso por persona y se acaba el 24 de agosto.
+Después de esa fecha deja de funcionar — no vuelve a activarse solo.
 
 Nos vemos en la cancha.
 Albatro Golf
