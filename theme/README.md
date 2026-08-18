@@ -123,3 +123,21 @@ a elementos con clase `.page-width-*`, que esta plantilla no usa.
 Son archivos nuevos y aditivos — nada más los referencia. Borrar ambos archivos del tema
 no rompe nada existente, solo las páginas que usen `templateSuffix: "canvas"` (volverían
 a la plantilla por defecto y perderían el diseño custom).
+
+### ⚠️ Trampa: el `body` de una Página pasa por un sanitizador que rompe SVG
+
+El campo `body` de una Página (`pageUpdate`/`pageCreate`) no guarda el HTML tal cual se
+envía — Shopify lo pasa por un limpiador que no conoce los atributos de SVG que van en
+camelCase. `viewBox` queda guardado como `viewbox` (y `preserveAspectRatio` como
+`preserveaspectratio`), que el navegador simplemente ignora. Sin `viewBox` funcionando,
+un `<svg>` dibujado para un lienzo de referencia (ej. 640×340) y mostrado con CSS al
+100% del contenedor **no escala** — el dibujo se corta o queda mal ubicado.
+
+Primera versión de `/pages/fundador15` tenía justo esto: una escena de fondo y los
+íconos de producto en SVG, probablemente rotos por este motivo. Se sacaron todos los
+`<svg>` del body de la página y se reemplazaron por emoji (🧤 guante, ⚪ pelota, 🧤🧤
+pack) y texto plano (flechas `→`) — cero riesgo, se ve igual en cualquier navegador.
+**No poner `<svg>` con `viewBox` dentro del `body` de una Página.** Si se necesita un
+gráfico vectorial ahí, hay que darle `width`/`height` en píxelos exactamente iguales al
+tamaño que se va a mostrar (sin depender de que escale), o usarlo como imagen de fondo
+CSS en vez de inline.
