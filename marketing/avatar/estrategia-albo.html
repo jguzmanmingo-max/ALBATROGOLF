@@ -1,0 +1,509 @@
+<!doctype html>
+<title>Estrategia Albo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#EEF0E4;
+    --surface:#FFFFFF;
+    --surface-2:#F5F4EA;
+    --ink:#17271F;
+    --ink-soft:#4B5A50;
+    --ink-faint:#7C8A80;
+    --line:rgba(23,39,31,0.14);
+    --fairway:#1E5B41;
+    --fairway-ink:#134430;
+    --fairway-soft:#E4EEE7;
+    --gold:#9C7620;
+    --gold-strong:#B8892B;
+    --gold-soft:#F1E7D0;
+    --shadow: 0 1px 2px rgba(20,30,24,0.06), 0 8px 24px -12px rgba(20,30,24,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1F17;
+      --surface:#15291E;
+      --surface-2:#102319;
+      --ink:#ECEEE3;
+      --ink-soft:#AAB8AD;
+      --ink-faint:#7E8F84;
+      --line:rgba(236,238,227,0.14);
+      --fairway:#4CAE82;
+      --fairway-ink:#BFE8D3;
+      --fairway-soft:#1B3B2B;
+      --gold:#E0B454;
+      --gold-strong:#E0B454;
+      --gold-soft:#2E2716;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1F17;
+    --surface:#15291E;
+    --surface-2:#102319;
+    --ink:#ECEEE3;
+    --ink-soft:#AAB8AD;
+    --ink-faint:#7E8F84;
+    --line:rgba(236,238,227,0.14);
+    --fairway:#4CAE82;
+    --fairway-ink:#BFE8D3;
+    --fairway-soft:#1B3B2B;
+    --gold:#E0B454;
+    --gold-strong:#E0B454;
+    --gold-soft:#2E2716;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Work Sans", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:56px 24px 96px;}
+
+  h1,h2,h3{font-family:"Fraunces", Georgia, serif; font-weight:600; text-wrap:balance; margin:0;}
+  .eyebrow{
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--fairway-ink); font-weight:500;
+  }
+  a{color:var(--fairway-ink);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold-strong); outline-offset:2px;}
+
+  /* ---- masthead ---- */
+  header.masthead{
+    display:flex; align-items:center; gap:22px;
+    padding-bottom:32px; margin-bottom:40px;
+    border-bottom:1px solid var(--line);
+  }
+  .badge-mark{flex:none; width:76px; height:76px; filter:drop-shadow(0 6px 14px rgba(20,40,30,0.25));}
+  .masthead-text{display:flex; flex-direction:column; gap:6px; min-width:0;}
+  .masthead-text h1{font-size:clamp(26px,4vw,34px); line-height:1.15;}
+  .dek{color:var(--ink-soft); font-size:16px; max-width:56ch;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .chip{
+    font-family:"JetBrains Mono", monospace; font-size:11.5px; letter-spacing:.02em;
+    padding:4px 10px; border-radius:100px; border:1px solid var(--line);
+    color:var(--ink-soft); background:var(--surface);
+  }
+
+  section{margin-bottom:52px;}
+  .section-head{display:flex; flex-direction:column; gap:4px; margin-bottom:20px;}
+  .section-head h2{font-size:23px;}
+
+  .lede{
+    font-family:"Fraunces", serif; font-weight:500; font-size:19px; line-height:1.5;
+    color:var(--ink); background:var(--fairway-soft); border:1px solid var(--line);
+    border-radius:14px; padding:20px 24px; text-wrap:balance;
+  }
+  .lede b{color:var(--fairway-ink);}
+
+  /* ---- cards / grid ---- */
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:680px){ .grid-2{grid-template-columns:1fr;} }
+
+  /* ---- albo identity ---- */
+  .identity{display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:start;}
+  @media (max-width:680px){ .identity{grid-template-columns:1fr;} }
+  .marks{display:flex; flex-direction:column; align-items:center; gap:14px;}
+  .mark-tile{
+    width:132px; height:132px; border-radius:20px; display:flex; align-items:center; justify-content:center;
+    background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  .mark-tile svg{width:92px; height:92px;}
+  .mark-tile.mono{background:var(--surface-2);}
+  .mark-caption{font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-faint); text-align:center; max-width:132px;}
+
+  .swatches{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 18px;}
+  .swatch{display:flex; flex-direction:column; gap:6px; align-items:flex-start;}
+  .swatch i{display:block; width:52px; height:52px; border-radius:10px; box-shadow: inset 0 0 0 1px rgba(127,127,127,.45);}
+  .swatch span{font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-soft);}
+
+  ul.rules{margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+  ul.rules li{padding-left:20px; position:relative; color:var(--ink-soft); font-size:14.5px;}
+  ul.rules li::before{content:"—"; position:absolute; left:0; color:var(--gold-strong);}
+
+  details.prompt{margin-top:16px;}
+  details.prompt summary{
+    cursor:pointer; font-family:"JetBrains Mono",monospace; font-size:12.5px;
+    color:var(--fairway-ink); padding:8px 0;
+  }
+  .prompt-box{
+    font-family:"JetBrains Mono",monospace; font-size:12.5px; line-height:1.6;
+    background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+    padding:14px 16px; color:var(--ink-soft); white-space:pre-wrap; margin-top:8px;
+  }
+  .note{
+    font-size:13.5px; color:var(--ink-faint); border-left:3px solid var(--gold-strong);
+    padding:10px 14px; margin-top:16px; background:var(--gold-soft); border-radius:0 10px 10px 0;
+  }
+  .link-list{list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:4px;}
+  .link-list a{font-family:"JetBrains Mono",monospace; font-size:12px; word-break:break-all;}
+
+  /* ---- pillars table ---- */
+  .scroll{overflow-x:auto; border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow);}
+  table{border-collapse:collapse; width:100%; min-width:640px; background:var(--surface);}
+  th,td{text-align:left; padding:13px 16px; font-size:14px; border-bottom:1px solid var(--line); vertical-align:top;}
+  thead th{
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-faint); background:var(--surface-2); font-weight:500;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td.num, th.num{font-variant-numeric:tabular-nums; font-family:"JetBrains Mono",monospace;}
+  .pillar-name{font-weight:600; color:var(--fairway-ink);}
+  .tag{
+    display:inline-block; font-family:"JetBrains Mono",monospace; font-size:10.5px;
+    padding:2px 8px; border-radius:100px; background:var(--fairway-soft); color:var(--fairway-ink);
+    margin-bottom:4px;
+  }
+
+  /* ---- script structure steps ---- */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr;} }
+  .step{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px; box-shadow:var(--shadow);}
+  .step .n{font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--gold-strong); font-weight:700;}
+  .step h3{font-size:15px; margin:6px 0 4px; font-family:"Work Sans",sans-serif; font-weight:600;}
+  .step p{margin:0; font-size:13px; color:var(--ink-soft);}
+
+  /* ---- checklist ---- */
+  .checklist{display:flex; flex-direction:column; gap:10px;}
+  .check{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow);}
+  .check b{color:var(--ink); display:block; font-size:14px; margin-bottom:2px;}
+  .check span{color:var(--ink-soft); font-size:13.5px;}
+  .check .icon{flex:none; width:26px; height:26px; border-radius:8px; background:var(--fairway-soft); color:var(--fairway-ink); display:flex; align-items:center; justify-content:center; font-size:14px;}
+
+  /* ---- calendar ---- */
+  .cal-pill{
+    display:inline-block; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.03em;
+    padding:2px 7px; border-radius:100px; margin-bottom:6px; font-weight:600;
+  }
+  .cal-pill.p2{background:var(--fairway-soft); color:var(--fairway-ink);}
+  .cal-pill.p13{background:var(--gold-soft); color:var(--gold);}
+  .cal-pill.p56{background:var(--surface-2); color:var(--ink-soft); border:1px solid var(--line);}
+  td.idea{font-size:13.5px; max-width:230px;}
+
+  /* ---- script templates ---- */
+  .templates{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:820px){ .templates{grid-template-columns:1fr;} }
+  .tpl{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px;}
+  .tpl .letter{
+    font-family:"Fraunces",serif; font-weight:700; font-size:22px; color:var(--gold-strong);
+  }
+  .tpl h3{font-size:15px; font-family:"Work Sans",sans-serif; font-weight:600;}
+  .tpl-line{font-family:"JetBrains Mono",monospace; font-size:11.5px; color:var(--ink-soft); line-height:1.7;}
+  .tpl-line b{color:var(--ink); font-weight:600;}
+
+  /* ---- bio / hashtags ---- */
+  .bio-box{
+    font-family:"JetBrains Mono",monospace; font-size:13px; white-space:pre-wrap; line-height:1.8;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow);
+  }
+  .hashtags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .hashtag{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--fairway-ink); background:var(--fairway-soft); padding:4px 10px; border-radius:100px;}
+  ol.conversion{margin:14px 0 0; padding-left:20px; display:flex; flex-direction:column; gap:8px;}
+  ol.conversion li{font-size:14px; color:var(--ink-soft);}
+  ol.conversion b{color:var(--ink);}
+
+  /* ---- metrics ---- */
+  ol.metrics{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; counter-reset:m;}
+  ol.metrics li{
+    counter-increment:m; display:flex; gap:14px; align-items:baseline;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow);
+  }
+  ol.metrics li::before{
+    content:counter(m); font-family:"JetBrains Mono",monospace; font-weight:700; font-size:13px;
+    color:var(--gold-strong); flex:none; width:20px;
+  }
+  ol.metrics b{color:var(--ink); font-size:14.5px;}
+  ol.metrics span{color:var(--ink-soft); font-size:13.5px; display:block;}
+  .goal{margin-top:14px;}
+
+  /* ---- footer manifest ---- */
+  footer{border-top:1px solid var(--line); padding-top:24px; margin-top:8px;}
+  .manifest{
+    font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--ink-soft);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px; white-space:pre; overflow-x:auto;
+  }
+  footer p{color:var(--ink-faint); font-size:12.5px; margin:14px 0 0;}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <svg class="badge-mark" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Albo">
+      <circle cx="120" cy="120" r="112" fill="#1E5B41"/>
+      <circle cx="120" cy="120" r="106" fill="none" stroke="#B8892B" stroke-width="2"/>
+      <path d="M50,132 C64,104 82,90 96,93 C106,95 112,102 118,112 C124,101 131,94 141,92 C156,89 174,103 190,124"
+            fill="none" stroke="#F6F5EC" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="176" cy="144" r="6" fill="#B8892B"/>
+      <path d="M150,150 Q165,148 176,144" fill="none" stroke="#B8892B" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    </svg>
+    <div class="masthead-text">
+      <span class="eyebrow">Albatro Golf · Plan de contenido</span>
+      <h1>Estrategia de Albo</h1>
+      <p class="dek">Tips de golf y ejercicios, grabados por ti — con Albo, la mascota de marca, como firma visual.</p>
+      <div class="chips">
+        <span class="chip">3 videos / semana</span>
+        <span class="chip">Formato 9:16</span>
+        <span class="chip">IG · TikTok · YouTube</span>
+        <span class="chip">albatrogolf.cl</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="concepto">
+    <p class="lede">Tú eres el protagonista — el golfista real, la cara y la voz de confianza. <b>Albo es tu mascota de marca</b>: firma tus videos, aparece en miniaturas y conecta cada tip con la tienda. En fitness y deporte, un cuerpo real demostrando movimiento genera más confianza que un avatar sintético — por eso Albo respalda, no reemplaza.</p>
+  </section>
+
+  <section id="albo">
+    <div class="section-head">
+      <span class="eyebrow">01 · Identidad</span>
+      <h2>Albo, el albatros golfista</h2>
+    </div>
+    <div class="card identity">
+      <div class="marks">
+        <div class="mark-tile">
+          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="120" cy="120" r="112" fill="#1E5B41"/>
+            <circle cx="120" cy="120" r="106" fill="none" stroke="#B8892B" stroke-width="2"/>
+            <path d="M50,132 C64,104 82,90 96,93 C106,95 112,102 118,112 C124,101 131,94 141,92 C156,89 174,103 190,124"
+                  fill="none" stroke="#F6F5EC" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="176" cy="144" r="6" fill="#B8892B"/>
+            <path d="M150,150 Q165,148 176,144" fill="none" stroke="#B8892B" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </div>
+        <span class="mark-caption">Logomark — perfil, watermark, favicon</span>
+        <div class="mark-tile mono">
+          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,132 C64,104 82,90 96,93 C106,95 112,102 118,112 C124,101 131,94 141,92 C156,89 174,103 190,124"
+                  fill="none" stroke="#1E5B41" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="176" cy="144" r="7" fill="#B8892B"/>
+            <path d="M150,150 Q165,148 176,144" fill="none" stroke="#B8892B" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </div>
+        <span class="mark-caption">Versión mono — sin fondo, merch</span>
+      </div>
+
+      <div>
+        <p style="margin:0 0 14px; color:var(--ink-soft); font-size:14.5px;">Un albatros en golf = anotar 3 bajo par en un hoyo, el logro más raro del deporte. El nombre perfecto para el "compañero de bolsa" que firma tu contenido — coach cercano, motivador, nunca arrogante.</p>
+
+        <span class="eyebrow">Paleta</span>
+        <div class="swatches">
+          <div class="swatch"><i style="background:#1E5B41"></i><span>Fairway<br>#1E5B41</span></div>
+          <div class="swatch"><i style="background:#B8892B"></i><span>Dorado<br>#B8892B</span></div>
+          <div class="swatch"><i style="background:#F6F5EC;"></i><span>Pergamino<br>#F6F5EC</span></div>
+        </div>
+
+        <span class="eyebrow">Reglas de uso</span>
+        <ul class="rules" style="margin-top:8px;">
+          <li>Mínimo 56 px de alto como marca de agua — más chico pierde legibilidad.</li>
+          <li>Nunca estirarlo fuera de proporción ni cambiar los colores de la paleta.</li>
+          <li>En video: esquina inferior derecha, 75–85% opacidad, sin tapar tu cara ni el swing.</li>
+          <li>Albo firma el contenido — no "habla" en tu lugar en el video principal.</li>
+        </ul>
+
+        <details class="prompt">
+          <summary>Ver ilustración de personaje (2 variantes) + prompt para regenerar</summary>
+          <p style="font-size:13px; color:var(--ink-soft); margin:6px 0;">Ya generé a Albo de cuerpo entero — visera, polera verde, palo al hombro — en 2 variantes, guardadas en tu <b>cuenta de Canva</b> ("Albo - Avatar Albatro Golf, opción 1 / 2") listas para exportar en PNG.</p>
+          <ul class="link-list">
+            <li><a href="https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_141328_c9a46494-6912-4c05-a213-e3fe5efc7d57.png" target="_blank" rel="noopener">→ Opción 1 (2048×2048)</a></li>
+            <li><a href="https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_141327_5ce166b5-ed17-4bad-b02a-18cc2ce0ab19.png" target="_blank" rel="noopener">→ Opción 2 (2048×2048)</a></li>
+          </ul>
+          <div class="prompt-box">Mascot logo illustration of a friendly athletic albatross bird character dressed as a golf coach: white and navy body, wearing a forest-green polo shirt and a green golf visor cap, one wing holding a golf club resting on shoulder, confident thumbs-up pose, big warm smile, bold clean vector shapes, flat modern sports-brand mascot style, thick smooth outlines, minimal shading, centered composition, solid deep-green circular background, no text, no watermark</div>
+          <p class="note">Este entorno no pudo descargar el PNG directo hacia el repositorio de código (política de red del sandbox) — por eso quedó en tu Canva y en los links de arriba, en vez de como archivo junto al logomark.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="pilares">
+    <div class="section-head">
+      <span class="eyebrow">02 · Contenido</span>
+      <h2>Pilares, mapeados a tu catálogo real</h2>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Pilar</th><th>De qué habla</th><th>Producto que conecta</th></tr></thead>
+        <tbody>
+          <tr><td class="pillar-name">Entrena como golfista</td><td>Fuerza y movilidad para el swing: rotación de cadera/torso, core, equilibrio</td><td>Bandas de Resistencia $12.990 · Bandas Tubulares x3 $13.990 · Balón Pilates 65cm $13.990</td></tr>
+          <tr><td class="pillar-name">Tips técnicos</td><td>Swing, grip, alineación, putting, juego corto</td><td>Contenido de autoridad — construye confianza</td></tr>
+          <tr><td class="pillar-name">Recuperación y prevención</td><td>Qué hacer después de jugar, cuidado de rodillas/articulaciones</td><td>Compresa de Hielo $7.990 · Menisquera Doble $14.000</td></tr>
+          <tr><td class="pillar-name">Cabeza y cuerpo</td><td>Rutina pre-ronda, foco/estrés, salud articular</td><td>Ashwagandha + Magnesio $35.990 · Omega 3 $19.990</td></tr>
+          <tr><td class="pillar-name">Lo que llevo en la bolsa</td><td>Accesorios rápidos, essentials, errores de principiante</td><td>Tees Bambú x50 $6.990 · Llavero Golf $2.990 · Levanta Piques $9.990</td></tr>
+          <tr><td class="pillar-name">Detrás de cámara</td><td>Tu historia, por qué Albatro Golf, conexión personal</td><td>Ninguno directo — construye marca</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="guion">
+    <div class="section-head">
+      <span class="eyebrow">03 · Formato</span>
+      <h2>Estructura de guion — 4 partes, todo video</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">0–3s</span><h3>Gancho</h3><p>Afirmación, pregunta o error mostrado en cámara.</p></div>
+      <div class="step"><span class="n">3–8s</span><h3>Contexto</h3><p>Por qué importa, en una frase.</p></div>
+      <div class="step"><span class="n">8–35s</span><h3>Demostración</h3><p>El tip o ejercicio con tu cuerpo, cámara fija, buena luz.</p></div>
+      <div class="step"><span class="n">últ. 3–5s</span><h3>CTA</h3><p>Una sola acción: guardar, comentar o ir al link.</p></div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <div class="section-head">
+      <span class="eyebrow">04 · Producción</span>
+      <h2>Setup de grabación — lo haces tú</h2>
+    </div>
+    <div class="checklist">
+      <div class="check"><span class="icon">📱</span><div><b>Cámara</b><span>Celular horizontal a la altura de cadera/pecho, 2–3 m de distancia, para ver el swing completo.</span></div></div>
+      <div class="check"><span class="icon">☀️</span><div><b>Luz</b><span>Siempre de frente, nunca a contraluz. Exterior: mañana o media tarde. Interior: frente a una ventana o aro de luz.</span></div></div>
+      <div class="check"><span class="icon">🎙️</span><div><b>Audio</b><span>Micrófono de solapa si hablas a cámara. Al aire libre con viento, usa espuma anti-viento.</span></div></div>
+      <div class="check"><span class="icon">🌿</span><div><b>Fondo</b><span>Cancha/pasto limpio o un rincón ordenado de la tienda — sin movimiento ni desorden detrás.</span></div></div>
+      <div class="check"><span class="icon">🎬</span><div><b>Graba en tandas</b><span>Un bloque de 2–3 horas al mes → 8–12 videos de una vez, para no depender del día a día.</span></div></div>
+      <div class="check"><span class="icon">✂️</span><div><b>Edición</b><span>CapCut o InShot, subtítulos siempre (+80% ve sin sonido), logomark de Albo como marca de agua.</span></div></div>
+    </div>
+  </section>
+
+  <section id="calendario">
+    <div class="section-head">
+      <span class="eyebrow">05 · Calendario</span>
+      <h2>Primeras 4 semanas</h2>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th style="width:70px;">Semana</th><th>Lunes — tip técnico</th><th>Miércoles — ejercicio</th><th>Viernes — liviano</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td class="idea"><span class="cal-pill p2">Pilar 2</span><br>"El error #1 que arruina tu swing (y cómo corregirlo en 30 segundos)"</td>
+            <td class="idea"><span class="cal-pill p13">Pilar 1</span><br>"3 ejercicios con banda elástica para más distancia en tu drive"</td>
+            <td class="idea"><span class="cal-pill p56">Pilar 6</span><br>"Por qué abrí Albatro Golf"</td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td class="idea"><span class="cal-pill p2">Pilar 2</span><br>"Cómo mejorar tu putting sin ir a la cancha"</td>
+            <td class="idea"><span class="cal-pill p13">Pilar 1</span><br>"El ejercicio con pelota de pilates que mejora tu equilibrio"</td>
+            <td class="idea"><span class="cal-pill p56">Pilar 5</span><br>"Lo que SIEMPRE llevo en mi bolsa de golf"</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td class="idea"><span class="cal-pill p2">Pilar 2</span><br>"3 tips de chipping para bajar 2 golpes esta semana"</td>
+            <td class="idea"><span class="cal-pill p13">Pilar 3</span><br>"Rutina de 5 minutos para las rodillas después de 18 hoyos"</td>
+            <td class="idea"><span class="cal-pill p56">Pilar 4</span><br>"Mi rutina de 10 minutos antes de salir a jugar"</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td class="idea"><span class="cal-pill p2">Pilar 2</span><br>"El error de grip que casi nadie corrige"</td>
+            <td class="idea"><span class="cal-pill p13">Pilar 1</span><br>"Bandas tubulares: el ejercicio de rotación que copian los pros"</td>
+            <td class="idea"><span class="cal-pill p56">Pilar 3</span><br>"Hielo sí o hielo no: cuándo usarlo después de jugar"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="plantillas">
+    <div class="section-head">
+      <span class="eyebrow">06 · Guiones</span>
+      <h2>Plantillas — rellena y graba</h2>
+    </div>
+    <div class="templates">
+      <div class="tpl">
+        <span class="letter">A</span>
+        <h3>Tip rápido</h3>
+        <div class="tpl-line"><b>GANCHO</b> — "Si [error], estás [consecuencia]."</div>
+        <div class="tpl-line"><b>CONTEXTO</b> — "Pasa porque [causa breve]."</div>
+        <div class="tpl-line"><b>DEMO</b> — error → corrección (2 tomas)</div>
+        <div class="tpl-line"><b>CTA</b> — "Pruébalo y cuéntame cómo te fue."</div>
+      </div>
+      <div class="tpl">
+        <span class="letter">B</span>
+        <h3>Ejercicio</h3>
+        <div class="tpl-line"><b>GANCHO</b> — "Este ejercicio de [X seg] te da más [beneficio]."</div>
+        <div class="tpl-line"><b>DEMO</b> — 3 repeticiones, forma correcta, cámara fija</div>
+        <div class="tpl-line"><b>DATO</b> — "Lo hago con [producto] — en la bio."</div>
+        <div class="tpl-line"><b>CTA</b> — "Guárdalo, es tu rutina de esta semana."</div>
+      </div>
+      <div class="tpl">
+        <span class="letter">C</span>
+        <h3>Producto / error común</h3>
+        <div class="tpl-line"><b>GANCHO</b> — pregunta directa ("¿Sabías que...?")</div>
+        <div class="tpl-line"><b>DESARROLLO</b> — el problema real que resuelve</div>
+        <div class="tpl-line"><b>DEMO</b> — úsalo en contexto real (cancha/práctica)</div>
+        <div class="tpl-line"><b>CTA</b> — "Está en albatrogolf.cl, link en la bio."</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conversion">
+    <div class="section-head">
+      <span class="eyebrow">07 · Conversión</span>
+      <h2>Bio, hashtags y tienda</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <span class="eyebrow">Bio sugerida</span>
+        <div class="bio-box" style="margin-top:10px;">🏌️ Tips de golf + ejercicios para tu swing
+🛒 albatrogolf.cl — envíos a todo Chile
+👇 Tu código de descuento abajo</div>
+        <span class="eyebrow" style="display:block; margin-top:16px;">Hashtags</span>
+        <div class="hashtags">
+          <span class="hashtag">#golf</span><span class="hashtag">#golftips</span><span class="hashtag">#golfswing</span>
+          <span class="hashtag">#golffitness</span><span class="hashtag">#golfchile</span><span class="hashtag">#albatrogolf</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="eyebrow">3 cosas que marcan diferencia</span>
+        <ol class="conversion">
+          <li><b>Código de descuento</b> (ej. ALBO10) — mencionado 1 de cada 3 videos, no en todos.</li>
+          <li><b>Comentario fijado</b> con el link directo al producto mencionado.</li>
+          <li><b>Link en bio</b> siempre actualizado al producto de la semana.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="planb">
+    <div class="section-head">
+      <span class="eyebrow">08 · A futuro</span>
+      <h2>Plan B — avatar 100% IA</h2>
+    </div>
+    <p class="lede" style="font-size:16px;">Si más adelante quieres que un avatar hable por ti en días que no puedas grabar, el camino es entrenar un <b>"Soul"</b> con 5–20 fotos tuyas — súbelas en una próxima sesión. Alternativa desde tu PC: HeyGen, Captions o Synthesia. Para el 90% de este plan, grabarte tú de verdad rinde mejor: la audiencia de fitness confía más en movimiento real.</p>
+  </section>
+
+  <section id="metricas">
+    <div class="section-head">
+      <span class="eyebrow">09 · Medición</span>
+      <h2>Métricas, en orden de importancia</h2>
+    </div>
+    <ol class="metrics">
+      <li><div><b>Retención</b><span>¿Ven el video completo? La señal más fuerte para el algoritmo.</span></div></li>
+      <li><div><b>Guardados y compartidos</b><span>Pesan más que los likes.</span></div></li>
+      <li><div><b>Clics al link / código de descuento</b><span>La conexión real con ventas.</span></div></li>
+      <li><div><b>Crecimiento de seguidores</b><span>Semana a semana.</span></div></li>
+    </ol>
+    <p class="lede goal" style="font-size:15px;">Meta de los primeros 30 días: <b>consistencia, no viralidad</b> — publicar las 12 piezas del calendario es el objetivo.</p>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Archivos de este paquete</span>
+    <div class="manifest" style="margin-top:10px;">marketing/
+├── estrategia-avatar-golf.md      ← versión texto completa
+└── avatar/
+    ├── albo-logomark.svg          ← logomark (perfil, watermark, favicon)
+    ├── albo-logomark-mono.svg     ← version sin fondo (merch, sellos)
+    └── estrategia-albo.html       ← este documento</div>
+    <p>Ilustraciones de personaje de Albo (2 variantes): en tu cuenta de Canva, listas para exportar.</p>
+  </footer>
+
+</div>
