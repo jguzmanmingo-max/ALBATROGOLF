@@ -14,7 +14,34 @@ pergamino — ver `estrategia/estrategia-avatar-golf.md` sección 2) en vez del
 rojo/azul-neón del video de referencia: mismo concepto de mecha transformer, colores
 de Albatro Golf.
 
-### Prompt — Albo robot transformer, pose de swing
+## 🔄 Variante con luz cálida — probada y descartada (18 ago 2026)
+
+Se probó una versión con iluminación cálida/abierta de día en vez del fondo oscuro,
+pensando que calzaba mejor con el tono "coach cercano" del canal. El dueño la vio y
+prefirió quedarse con la versión oscura/dramática original — **esa es la vigente**,
+ver sección de abajo. Prompt de la variante clara (por si sirve a futuro, no en uso):
+
+```
+Mascot character illustration of a friendly albatross-bird transforming robot dressed
+as a golf champion, standing relaxed: sleek metallic forest-green armor plating
+(#1E5B41) with glossy antique-gold trim and highlights (#B8892B), avian-shaped helmet
+with a sharp beak silhouette and warm cream accents (#F6F5EC), glowing warm amber-gold
+energy core in the chest and friendly glowing gold visor eyes, one arm resting a golf
+club against its shoulder, open confident welcoming stance, bright warm daylight
+studio lighting, soft cream background (#F6F5EC) with a gentle golden glow, clean
+glossy surface detail with visible mechanical joint lines and panel seams, simple
+readable silhouette, centered composition, no text, no watermark
+```
+Generadas: https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_221759_65af7ab7-077d-4ba7-9f52-f2b48ae8670f.png · https://d8j0ntlcm91z4.cloudfront.net/user_3D2vSyBLyiP3BkYQ41T7OYqzkvm/hf_20260818_221759_530d3e46-20d3-4f5f-b7ae-adf3634ad219.png
+
+---
+
+## ✅ Versión vigente — mecha, fondo oscuro/dramático
+
+Confirmada por el dueño el 18 ago 2026 (mostró la pose de reposo y una nueva pose de
+swing con estela dorada, mismo estilo — "sigue como del otro"). Dos poses:
+
+**Pose de swing:**
 
 ```
 Mascot character illustration of a heroic albatross-bird transforming robot dressed
