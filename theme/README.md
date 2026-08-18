@@ -93,3 +93,33 @@ distinto.
 El tema publicado no fue modificado — el popup en vivo sigue siendo el original hasta
 que se publique este tema. Para revertir solo este archivo dentro del preview, hay que
 volver a subir la versión que trae el tema `MAIN` (`211890307325`).
+
+## `sections/page-canvas.liquid` + `templates/page.canvas.json`
+
+Plantilla en blanco para páginas 100% custom (HTML/CSS/JS propio en el body de la
+página, sin el layout de bloques del tema). A diferencia de `main-page.liquid` (la
+plantilla por defecto), esta **no** envuelve el contenido en `.page-width-content` ni
+agrega el `<h1>` automático del título — así una página puede ser full-bleed de verdad.
+
+**Instalado en:** tema `MAIN` (`211890307325`), el publicado. A diferencia de todo lo
+demás en esta carpeta, esto se subió directo a producción — son archivos **nuevos**, no
+tocan nada existente (ningún template ni página los usaba antes), así que no hay riesgo
+de romper algo que ya funcionaba. Verificado contra `assets/base.css`: `.content-for-layout`
+no impone ancho ni padding — el límite de ancho del tema (`--page-margin`) solo se aplica
+a elementos con clase `.page-width-*`, que esta plantilla no usa.
+
+**Primer uso:** la página `/pages/fundador15` (ver `marketing/2026-08-fundador15-*`).
+
+### Cómo usarla para una página nueva
+
+1. Crear la página en Shopify con `templateSuffix: "canvas"`.
+2. El `body` de la página es HTML/CSS/JS libre — se renderiza tal cual, sin pasar por
+   Liquid (Shopify no interpreta el contenido de página como Liquid).
+3. Sin `<title>` ni `<meta>` en el body — no tienen efecto ahí. El título real de la
+   página lo pone el campo `title` de la página misma.
+
+### Si hay que revertir
+
+Son archivos nuevos y aditivos — nada más los referencia. Borrar ambos archivos del tema
+no rompe nada existente, solo las páginas que usen `templateSuffix: "canvas"` (volverían
+a la plantilla por defecto y perderían el diseño custom).

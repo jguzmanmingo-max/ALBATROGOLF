@@ -1,0 +1,19 @@
+{% comment %}
+  Seccion en blanco: renderiza el contenido de la pagina sin el ancho maximo
+  ni el heading automatico que impone main-page.liquid. Para paginas con
+  HTML/CSS/JS propio en el body.
+{% endcomment %}
+<div class="page-canvas">
+  {{ closest.page.content }}
+</div>
+
+{% schema %}
+{
+  "name": "Pagina en blanco",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": []
+}
+{% endschema %}

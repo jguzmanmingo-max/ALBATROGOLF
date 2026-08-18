@@ -1,9 +1,9 @@
 # Correo para los 65 — FUNDADOR15 + envío gratis
 
+**Estado:** borrador listo en Gmail (`jguzmanmingo@gmail.com`), sin enviar. Falta tu revisión final y resolver desde qué casilla sale.
 **Enviar antes del:** 24 de agosto (el código vence ese día a las 23:59)
-**Lista:** los 65 correos de `albatro-leads-para-escribir.csv`
-**Página de canje (interactiva):** ver nota de hosting al final — pendiente decidir si queda en
-albatrogolf.cl o en el link de preview.
+**Lista:** los 65 correos de `albatro-leads-para-escribir.csv` — en copia oculta (BCC), nadie ve al resto.
+**Página de canje (interactiva):** https://www.albatrogolf.cl/pages/fundador15 — instalada como página real de la tienda (código con botón de copiar, countdown en vivo, los 3 productos con compra directa).
 
 ---
 
@@ -52,18 +52,27 @@ guante de cuero, pelotas AAA, pack de 2 guantes).
 
 ## Notas para ti (José)
 
-1. **Dónde vive la página de canje** — está construida y publicada como preview. Falta decidir
-   si la instalo como página real en albatrogolf.cl (mejor para confianza del cliente, un poco
-   más de trabajo porque hay que verificar que no choque visualmente con el tema Horizon) o si
-   por ahora se manda el link de preview. Pregunté esto en el chat.
+1. **La página de canje ya quedó instalada en albatrogolf.cl** (no en preview):
+   https://www.albatrogolf.cl/pages/fundador15 — código con botón de copiar, countdown en
+   vivo al 24 de agosto, y los 3 productos con compra directa (código pre-aplicado). No pude
+   verla renderizada yo mismo — este chat tiene bloqueado el acceso de navegación a
+   albatrogolf.cl (política del entorno, no del sitio) — así que verifiqué a mano contra el
+   CSS del tema que nada le impone un ancho máximo ni le mete un título duplicado encima, pero
+   igual dale una mirada rápida desde tu celular antes de mandar el correo.
 
 2. **Quién manda el correo** — el Gmail conectado en este chat es `jguzmanmingo@gmail.com`, no
    `hola@albatrogolf.cl`. La herramienta de Gmail no deja elegir un remitente distinto al de la
-   cuenta conectada. Para que salga de `hola@albatrogolf.cl` hay dos caminos: (a) conectas esa
-   casilla en los ajustes de conectores de este chat, o (b) te dejo el borrador armado
-   (asunto + cuerpo + los 65 en copia oculta) y lo mandas tú mismo desde donde administres esa
-   casilla.
+   cuenta conectada, así que el borrador quedó armado ahí (asunto + cuerpo con diseño +
+   los 65 en copia oculta), no en `hola@albatrogolf.cl`. Para que salga de esa casilla: (a)
+   la conectas en los ajustes de conectores de este chat, o (b) copias el borrador y lo mandas
+   tú mismo desde donde administres `hola@albatrogolf.cl`.
 
 3. **Los 3 que ya compraron** (eliasjmc, salvadorcartest, ftorresh61) — verificado de nuevo en
    vivo contra Shopify antes de esta versión, siguen fuera de la lista. Cero duplicados: 65
    filas, 65 correos únicos.
+
+4. **Archivos de referencia** — `2026-08-fundador15-pagina-canje.html` (diseño de la página,
+   igual al que quedó instalado salvo el `<title>`/`<meta>` del encabezado, que en Shopify no
+   van en el body) y `2026-08-fundador15-email.html` (el HTML exacto del correo). Los archivos
+   de tema nuevos (`sections/page-canvas.liquid`, `templates/page.canvas.json`) están
+   documentados en `theme/README.md`.
