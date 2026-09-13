@@ -40,10 +40,29 @@ ID Zernio: `6aa04fb1b1e3bf6c1daf1ecf` · ID plataforma: `17880597231622803`
 | Visitas al perfil | 0 |
 | Engagement rate | 0 % |
 
-**Caveat honesto:** son solo 3,5 horas de vida y los carruseles acumulan más lento que los
-reels. El número final será mayor que 8. Pero el problema no es el número absoluto: es que
-las primeras horas (la ventana en que el algoritmo decide a cuánta gente mostrarlo) se
-quemaron mientras Chile dormía.
+**Caveat de esa primera lectura:** eran solo 3,5 horas de vida y los carruseles acumulan
+más lento que los reels, así que el número final tenía que ser mayor. Lo fue, pero poco
+— ver la medición de 24 h más abajo. El problema nunca fue el número absoluto de esa
+primera hora: fue que la ventana en que el algoritmo decide a cuánta gente mostrarlo se
+quemó mientras Chile dormía.
+
+### Medición de 24 horas (13-09-2026, 07:48 UTC)
+
+| Métrica | 3h35 | 24 h |
+|---|---|---|
+| Impresiones | 8 | **30** |
+| Alcance | 4 | **15** (9,9 % de 151 seguidores) |
+| Likes | 0 | 1 |
+| Comentarios · Guardados · Compartidos · Clics · Visitas al perfil | 0 | **0** |
+
+Curva completa: 8 (3h35) → 18 (7h) → 23 (9h) → 25 (13h) → 27 (15h) → 30 (19h) → 30 (24h).
+**Plano desde las 19 horas: el post está cerrado.**
+
+Cierre: 30 impresiones contra un piso histórico de 67–89 en sus carruseles. Terminó en
+**menos de la mitad del peor carrusel de la cuenta**, y con cero de las cuatro señales que
+mueven distribución (comentarios, guardados, compartidos, clics). El único like llegó
+tarde y no cambia nada. Diagnóstico confirmado: publicar a las 04:37 AM le costó el post
+completo.
 
 ## 3. Comparación con el historial de la cuenta
 
@@ -165,7 +184,8 @@ que le pide comprar de inmediato.
 - [ ] Revisar visualmente las 5 slides (bloqueadas por el proxy en esta sesión). Si las
       compartes directo, hago la crítica de diseño: primera slide, jerarquía, legibilidad
       en móvil, contraste, CTA visual.
-- [ ] Volver a medir este post a las 24 y 48 h para separar el efecto horario del efecto
-      formato/contenido.
+- [x] Volver a medir este post a las 24 h — hecho, ver arriba: cerró en 30 impresiones,
+      plano desde las 19 h.
+- [ ] Medición de 48 h (solo para confirmar que no hay cola; no se espera movimiento).
 - [ ] Definir calendario de contenido con las pelotas AAA como eje.
 - [ ] Revisar a dónde apunta el link de la bio y qué ve alguien que llega desde Facebook.
