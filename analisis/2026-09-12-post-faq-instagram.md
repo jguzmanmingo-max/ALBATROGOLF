@@ -55,14 +55,21 @@ quemó mientras Chile dormía.
 | Likes | 0 | 1 |
 | Comentarios · Guardados · Compartidos · Clics · Visitas al perfil | 0 | **0** |
 
-Curva completa: 8 (3h35) → 18 (7h) → 23 (9h) → 25 (13h) → 27 (15h) → 30 (19h) → 30 (24h).
-**Plano desde las 19 horas: el post está cerrado.**
+Curva: 8 (3h35) → 18 (7h) → 23 (9h) → 25 (13h) → 27 (15h) → 30 (19h) → 30 (24h).
 
-Cierre: 30 impresiones contra un piso histórico de 67–89 en sus carruseles. Terminó en
-**menos de la mitad del peor carrusel de la cuenta**, y con cero de las cuatro señales que
-mueven distribución (comentarios, guardados, compartidos, clics). El único like llegó
-tarde y no cambia nada. Diagnóstico confirmado: publicar a las 04:37 AM le costó el post
-completo.
+### Medición de 48 horas (14-09-2026, 07:50 UTC)
+
+**38 impresiones · 19 de alcance · 1 like · 0 comentarios, 0 guardados, 0 compartidos,
+0 clics, 0 visitas al perfil.**
+
+En el segundo día sumó 8 impresiones más (30 → 38): goteo residual de gente que entra al
+perfil, no una reactivación. Las cuatro señales que mueven distribución siguen en cero a
+las 48 horas.
+
+Cierre definitivo: **38 impresiones contra un piso histórico de 67–89** en sus carruseles.
+Terminó en **poco más de la mitad del peor carrusel de la cuenta** pese a haber tenido el
+doble de tiempo. Diagnóstico confirmado: publicar a las 04:37 AM le costó el post completo,
+y el formato FAQ no generó ni un guardado ni un compartido que lo rescatara.
 
 ## 3. Comparación con el historial de la cuenta
 
@@ -186,6 +193,7 @@ que le pide comprar de inmediato.
       en móvil, contraste, CTA visual.
 - [x] Volver a medir este post a las 24 h — hecho, ver arriba: cerró en 30 impresiones,
       plano desde las 19 h.
-- [ ] Medición de 48 h (solo para confirmar que no hay cola; no se espera movimiento).
+- [x] Medición de 48 h — hecha, ver arriba: 38 impresiones, 19 de alcance, engagement
+      en cero. Seguimiento de este post cerrado.
 - [ ] Definir calendario de contenido con las pelotas AAA como eje.
 - [ ] Revisar a dónde apunta el link de la bio y qué ve alguien que llega desde Facebook.
